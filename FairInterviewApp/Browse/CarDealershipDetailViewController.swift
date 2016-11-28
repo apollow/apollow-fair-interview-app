@@ -9,27 +9,51 @@
 import Foundation
 import UIKit
 import RxSwift
+import RxCocoa
 import RxDataSources
 import CoreLocation
 
+private extension Reactive where Base: UIView {
+    var driveAuthorization: UIBindingObserver<Base, Bool> {
+        return UIBindingObserver(UIElement: base) { view, authorized in
+            if authorized {
+                view.isHidden = true
+                view.superview?.sendSubview(toBack:view)
+            }
+            else {
+                view.isHidden = false
+                view.superview?.bringSubview(toFront:view)
+            }
+        }
+    }
+}
+
 class CarDealershipDetailViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var CarImageView: UIView!
+    @IBOutlet weak var openPermissionsButton: UIButton!
+    @IBOutlet weak var noGeolocation: UIView!
     
     var car : Car = Car()
-    var articleList : [String]?
-    
+    var dealershipViewModel : DealerViewModel?
     var disposeBag : DisposeBag?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         disposeBag = DisposeBag()
         let geolocationService = GeolocationService.instance
         
-        geolocationService.authorized
-            .drive(noGeolocationView.rx.driveAuthorization)
-            .addDisposableTo(disposeBag)
+        openPermissionsButton.rx.tap
+            .bindNext { [weak self] in
+                self?.openAppPreferences()
+            }
+            .addDisposableTo(disposeBag!)
         
-        geolocationService.clocation.drive(onNext: {
+        geolocationService.authorized
+            .drive(noGeolocation.rx.driveAuthorization)
+            .addDisposableTo(disposeBag!)
+        
+        geolocationService.clocation
+            .drive(onNext: {
             cloc in
             CLGeocoder().reverseGeocodeLocation(cloc, completionHandler:  {
                 (array, error) in
@@ -38,7 +62,10 @@ class CarDealershipDetailViewController: UIViewController {
                         self.getDealerships(array)
                     }
                 })
-        }).addDisposableTo(disposeBag!)
+            }, onCompleted: {
+                
+            }).addDisposableTo(disposeBag!)
+        
     }
     
     func getDealerships(_ array : [CLPlacemark]?) {
@@ -48,13 +75,15 @@ class CarDealershipDetailViewController: UIViewController {
         if (arr.isEmpty) {
             return
         }
+        disposeBag = DisposeBag()
+        let zipcode = arr.last!.postalCode
         
-        EdmundProvider.request(.articleOfVehicle(make: car.make, model: car.model))
+        EdmundProvider.request(.dealershipsForVehicle(zip: zipcode!, make: car.make))
             .retry(3)
             .subscribe { event in
                 switch event {
                 case let .next(response):
-                    self.articleList = Article.fromJSON(response.data)
+                    self.dealershipViewModel = DealerViewModel.init(response: response.data)
                     self.configureTableDataSource()
                     self.configureNavigateOnRowClick()
                 case let .error(error):
@@ -68,39 +97,34 @@ class CarDealershipDetailViewController: UIViewController {
     func configureTableDataSource() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
-        let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, String>>()
-        
-        dataSource.configureCell = { (_, tv, ip, element) in
-            let cell = tv.dequeueReusableCell(withIdentifier: "Cell")!
-            cell.textLabel?.text = element
-            cell.textLabel?.font = UIFont.systemFont(ofSize: 12)
-            return cell
-        }
-        
-        //        dataSource.titleForHeaderInSection = { dataSource, sectionIndex in
-        //            return sectionIndex == 0 ? "Details" : "Articles"
-        //        }
-        
-        let items = Observable.just([
-            SectionModel(model: "Details", items: car.getDetailedDescription),
-            SectionModel(model: "Articles", items: articleList!)])
-        
-        items
-            .bindTo(tableView.rx.items(dataSource: dataSource))
-            .addDisposableTo(disposeBag!)
+        dealershipViewModel!.data
+            .map { (deals : [Dealer]) in
+                return deals.filter { deal in
+                    deal.active == true
+                }
+            }
+            .bindTo(tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) {
+                (_, viewModel, cell) in
+                cell.textLabel?.text = viewModel.name
+        }.addDisposableTo(disposeBag!)
     }
     
     
     func configureNavigateOnRowClick() {
-        
-        tableView.rx.modelSelected(String.self)
+        tableView.rx.modelSelected(Dealer.self)
             .asDriver()
-            .drive(onNext: { str in
+            .drive(onNext: { deal in
+                let str = "http://maps.apple.com/?daddr=\(deal.latLongRepr)"
                 guard let url = URL(string: str) else {
                     return
                 }
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             })
             .addDisposableTo(disposeBag!)
+
+    }
+    
+    private func openAppPreferences() {
+        UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
     }
 }

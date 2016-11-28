@@ -27,6 +27,7 @@
 		75525A661DEBD800002578B7 /* GeolocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75525A651DEBD800002578B7 /* GeolocationService.swift */; };
 		75525A691DEBD856002578B7 /* CLLocationManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75525A671DEBD856002578B7 /* CLLocationManager+Rx.swift */; };
 		75525A6A1DEBD856002578B7 /* RxCLLocationManagerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75525A681DEBD856002578B7 /* RxCLLocationManagerDelegateProxy.swift */; };
+		75525A6C1DEC03F0002578B7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75525A6B1DEC03F0002578B7 /* MapKit.framework */; };
 		758B6D191DEA351B0026B002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B6D181DEA351B0026B002 /* AppDelegate.swift */; };
 		758B6D241DEA351B0026B002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 758B6D231DEA351B0026B002 /* Assets.xcassets */; };
 		758B6D321DEA351B0026B002 /* FairInterviewAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B6D311DEA351B0026B002 /* FairInterviewAppTests.swift */; };
@@ -70,6 +71,7 @@
 		75525A651DEBD800002578B7 /* GeolocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeolocationService.swift; path = Helpers/GeolocationService.swift; sourceTree = "<group>"; };
 		75525A671DEBD856002578B7 /* CLLocationManager+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CLLocationManager+Rx.swift"; path = "Extensions/CLLocationManager+Rx.swift"; sourceTree = "<group>"; };
 		75525A681DEBD856002578B7 /* RxCLLocationManagerDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RxCLLocationManagerDelegateProxy.swift; path = Extensions/RxCLLocationManagerDelegateProxy.swift; sourceTree = "<group>"; };
+		75525A6B1DEC03F0002578B7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		758B6D151DEA351B0026B002 /* FairInterviewApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FairInterviewApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		758B6D181DEA351B0026B002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		758B6D231DEA351B0026B002 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75525A6C1DEC03F0002578B7 /* MapKit.framework in Frameworks */,
 				C3EEB92E09BD0353144D0300 /* Pods_FairInterviewApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,6 +114,7 @@
 		22F01ACE20E6AC0994928477 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				75525A6B1DEC03F0002578B7 /* MapKit.framework */,
 				F5BEC6C96AC68CF8131A9AE1 /* Pods_FairInterviewApp.framework */,
 				02BD24F9DE3EFADC799E362A /* Pods_FairInterviewAppTests.framework */,
 			);
@@ -313,6 +317,11 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 5JCRU35BES;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					758B6D2C1DEA351B0026B002 = {
 						CreatedOnToolsVersion = 8.1;

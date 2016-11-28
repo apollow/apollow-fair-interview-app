@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--Browse-->
         <scene sceneID="snT-py-3hH">
             <objects>
                 <viewController storyboardIdentifier="RootViewController" id="S4R-Ja-viH" customClass="RootViewController" customModule="FairInterviewApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -40,18 +40,18 @@
                             <constraint firstItem="EPS-s9-h4K" firstAttribute="top" secondItem="zn3-vH-8RB" secondAttribute="bottom" id="xe6-6s-ez5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="UY4-U4-QV0"/>
+                    <navigationItem key="navigationItem" title="Browse" id="UY4-U4-QV0"/>
                     <connections>
                         <outlet property="searchBar" destination="77q-hv-r85" id="Plu-ff-Mgp"/>
                         <outlet property="tableView" destination="zn3-vH-8RB" id="RKg-d0-eiO"/>
-                        <segue destination="pU5-XA-7Ul" kind="show" id="gju-OV-4Je"/>
+                        <segue destination="pU5-XA-7Ul" kind="show" identifier="CarToDetail" id="gju-OV-4Je"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GmD-Rr-ZGN" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1535.2" y="-243.32833583208398"/>
         </scene>
-        <!--Title-->
+        <!--Car-->
         <scene sceneID="17a-ah-7Tu">
             <objects>
                 <viewController storyboardIdentifier="CarDetailViewController" id="pU5-XA-7Ul" customClass="CarDetailViewController" customModule="FairInterviewApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -69,9 +69,18 @@
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFM-xk-e1w">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
-                                <color key="backgroundColor" red="0.28627452250000002" green="0.74901962280000001" blue="0.87843137979999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2dp-mo-HGt">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="2dp-mo-HGt" secondAttribute="bottom" id="EPJ-XB-bn5"/>
+                                    <constraint firstAttribute="trailing" secondItem="2dp-mo-HGt" secondAttribute="trailing" id="Gnw-KT-qZr"/>
+                                    <constraint firstItem="2dp-mo-HGt" firstAttribute="top" secondItem="wFM-xk-e1w" secondAttribute="top" id="cYj-1j-D9m"/>
                                     <constraint firstAttribute="width" constant="321" id="gCa-J7-lmA"/>
+                                    <constraint firstItem="2dp-mo-HGt" firstAttribute="leading" secondItem="wFM-xk-e1w" secondAttribute="leading" id="pt6-Gy-rY7"/>
                                     <constraint firstAttribute="height" constant="201" id="wL3-1c-Ld7"/>
                                 </constraints>
                                 <variation key="default">
@@ -152,13 +161,17 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="pt7-sA-GKx">
-                        <barButtonItem key="rightBarButtonItem" title="Nearby Dealerships" id="V56-Ce-18q" userLabel="Nearest Buy"/>
+                    <navigationItem key="navigationItem" title="Car" id="pt7-sA-GKx">
+                        <barButtonItem key="rightBarButtonItem" title="Nearby Dealerships" id="V56-Ce-18q" userLabel="Nearest Buy">
+                            <connections>
+                                <action selector="onDealershipTap:" destination="pU5-XA-7Ul" id="VES-Wt-1ld"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="CarImageView" destination="wFM-xk-e1w" id="M2r-TA-eG0"/>
+                        <outlet property="carImageView" destination="2dp-mo-HGt" id="qeE-Ii-hXS"/>
                         <outlet property="tableView" destination="AxB-dH-N9i" id="ngC-M6-a02"/>
-                        <segue destination="amE-D4-uaX" kind="show" id="cbr-Dn-Dcj"/>
+                        <segue destination="amE-D4-uaX" kind="show" identifier="DetailToDealership" id="cbr-Dn-Dcj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAo-yG-cWA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -183,10 +196,10 @@
             </objects>
             <point key="canvasLocation" x="596" y="-243.32833583208398"/>
         </scene>
-        <!--Title-->
+        <!--Dealership-->
         <scene sceneID="Bkx-xM-v2M">
             <objects>
-                <viewController storyboardIdentifier="CarDetailViewController" id="amE-D4-uaX" customClass="CarDetailViewController" customModule="FairInterviewApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CarDealershipDetailViewController" id="amE-D4-uaX" customClass="CarDealershipDetailViewController" customModule="FairInterviewApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TiA-uM-lbf"/>
                         <viewControllerLayoutGuide type="bottom" id="IsJ-ls-iVs"/>
@@ -195,20 +208,40 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JaN-cA-Mo2">
-                                <rect key="frame" x="33" y="147" width="240" height="128"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WH8-a6-1Rb">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JaN-cA-Mo2">
+                                <rect key="frame" x="16" y="0.0" width="343" height="603"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HGp-t0-weW">
+                                        <rect key="frame" x="148" y="364" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" red="0.95686274770000002" green="0.32281900000000002" blue="0.23337878989999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="JaN-cA-Mo2" firstAttribute="leading" secondItem="aLV-Bt-d0l" secondAttribute="leadingMargin" id="3Eo-9j-34z"/>
+                            <constraint firstItem="WH8-a6-1Rb" firstAttribute="leading" secondItem="aLV-Bt-d0l" secondAttribute="leading" id="7CK-Cz-6Aq"/>
                             <constraint firstItem="JaN-cA-Mo2" firstAttribute="top" secondItem="TiA-uM-lbf" secondAttribute="bottom" id="MLo-WO-pyy"/>
+                            <constraint firstAttribute="trailing" secondItem="WH8-a6-1Rb" secondAttribute="trailing" id="YSc-52-ds9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JaN-cA-Mo2" secondAttribute="trailing" id="fZa-zx-1dO"/>
+                            <constraint firstItem="WH8-a6-1Rb" firstAttribute="top" secondItem="TiA-uM-lbf" secondAttribute="bottom" id="idO-pe-u0L"/>
                             <constraint firstItem="IsJ-ls-iVs" firstAttribute="top" secondItem="JaN-cA-Mo2" secondAttribute="bottom" id="kWm-Bq-pQW"/>
+                            <constraint firstItem="IsJ-ls-iVs" firstAttribute="top" secondItem="WH8-a6-1Rb" secondAttribute="bottom" id="sBw-ZI-res"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="1Rb-vl-Czs"/>
+                    <navigationItem key="navigationItem" title="Dealership" id="1Rb-vl-Czs"/>
+                    <connections>
+                        <outlet property="noGeolocation" destination="JaN-cA-Mo2" id="BME-1a-nik"/>
+                        <outlet property="openPermissionsButton" destination="HGp-t0-weW" id="OkV-aN-5cK"/>
+                        <outlet property="tableView" destination="WH8-a6-1Rb" id="qAy-wi-dRS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OYh-Us-sIG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

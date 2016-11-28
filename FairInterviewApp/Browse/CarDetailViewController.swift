@@ -13,7 +13,7 @@ import RxDataSources
 
 class CarDetailViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var CarImageView: UIView!
+    @IBOutlet weak var carImageView: UIImageView!
     
     var car : Car = Car()
     var articleList : [String]?
@@ -23,7 +23,16 @@ class CarDetailViewController: UIViewController {
         super.viewDidLoad()
         disposeBag = DisposeBag()
         getArticleLinks()
+        
+        
+        let url = URL(string: car.getImageUrlString())!
+        let imageService = DefaultImageService.sharedImageService
+        imageService.imageFromURL(url)
+            .asDriver(onErrorJustReturn: DownloadableImage.offlinePlaceholder)
+            .drive(carImageView.rx.downloadableImageAnimated(kCATransitionFade))
+            .addDisposableTo(disposeBag!)
     }
+    
     
     func getArticleLinks() {
         EdmundProvider.request(.articleOfVehicle(make: car.make, model: car.model))
@@ -54,10 +63,6 @@ class CarDetailViewController: UIViewController {
             return cell
         }
         
-//        dataSource.titleForHeaderInSection = { dataSource, sectionIndex in
-//            return sectionIndex == 0 ? "Details" : "Articles"
-//        }
-        
         let items = Observable.just([
             SectionModel(model: "Details", items: car.getDetailedDescription),
             SectionModel(model: "Articles", items: articleList!)])
@@ -65,11 +70,17 @@ class CarDetailViewController: UIViewController {
         items
             .bindTo(tableView.rx.items(dataSource: dataSource))
             .addDisposableTo(disposeBag!)
+        
     }
     
+    @IBAction func onDealershipTap(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "CarDealershipDetailViewController") as! CarDealershipDetailViewController
+        viewController.car = car
+        self.navigationController?.pushViewController(viewController, animated: false)
+    }
     
     func configureNavigateOnRowClick() {
-        
         tableView.rx.modelSelected(String.self)
             .asDriver()
             .drive(onNext: { str in
