@@ -13,9 +13,9 @@ import PureLayout
 
 class ImageContentPageViewController: UIViewController {
     var imageView : UIImageView?
-    
     var disposeBag : DisposeBag?
     var urlString : String = ""
+    
     var downloadableImage: Observable<DownloadableImage>?{
         didSet{
             let disposeBag = DisposeBag()

@@ -23,25 +23,52 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zn3-vH-8RB">
-                                <rect key="frame" x="16" y="0.0" width="343" height="603"/>
+                                <rect key="frame" x="16" y="44" width="343" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Search Cars" id="77q-hv-r85">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </searchBar>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NcV-iH-bgQ">
+                                <rect key="frame" x="16" y="44" width="343" height="559"/>
+                                <subviews>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We couldn't find any cars with that make query" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJc-Js-eso">
+                                        <rect key="frame" x="51" y="259" width="241" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="241" id="Hss-3D-cWb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="WJc-Js-eso" firstAttribute="centerX" secondItem="NcV-iH-bgQ" secondAttribute="centerX" id="7LD-eU-Inw"/>
+                                    <constraint firstItem="WJc-Js-eso" firstAttribute="centerY" secondItem="NcV-iH-bgQ" secondAttribute="centerY" id="uXG-d6-Vxx"/>
+                                </constraints>
+                            </view>
+                            <searchBar contentMode="redraw" text="" placeholder="Search Makes" translatesAutoresizingMaskIntoConstraints="NO" id="77q-hv-r85">
+                                <rect key="frame" x="16" y="0.0" width="343" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="0.97826086960000003" green="0.91848131079999995" blue="0.73914263440000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="77q-hv-r85" firstAttribute="leading" secondItem="ZwX-cT-FIQ" secondAttribute="leadingMargin" id="9b7-2w-kjk"/>
+                            <constraint firstItem="zn3-vH-8RB" firstAttribute="top" secondItem="77q-hv-r85" secondAttribute="bottom" id="AcG-Fs-8p7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zn3-vH-8RB" secondAttribute="trailing" id="CaC-UB-5I6"/>
-                            <constraint firstItem="zn3-vH-8RB" firstAttribute="top" secondItem="fXf-Jd-eTc" secondAttribute="bottom" id="gWs-I3-ueh"/>
+                            <constraint firstItem="NcV-iH-bgQ" firstAttribute="top" secondItem="77q-hv-r85" secondAttribute="bottom" id="G6D-bs-JGb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NcV-iH-bgQ" secondAttribute="trailing" id="Gib-E3-wqT"/>
+                            <constraint firstItem="77q-hv-r85" firstAttribute="top" secondItem="fXf-Jd-eTc" secondAttribute="bottom" id="X2s-Z5-F45"/>
+                            <constraint firstItem="77q-hv-r85" firstAttribute="trailing" secondItem="ZwX-cT-FIQ" secondAttribute="trailingMargin" id="c4O-Un-C4I"/>
                             <constraint firstItem="zn3-vH-8RB" firstAttribute="leading" secondItem="ZwX-cT-FIQ" secondAttribute="leadingMargin" id="ocE-Px-F6c"/>
+                            <constraint firstItem="NcV-iH-bgQ" firstAttribute="height" secondItem="zn3-vH-8RB" secondAttribute="height" id="pOs-Rx-go8"/>
+                            <constraint firstItem="NcV-iH-bgQ" firstAttribute="leading" secondItem="ZwX-cT-FIQ" secondAttribute="leadingMargin" id="qur-kh-cQO"/>
                             <constraint firstItem="EPS-s9-h4K" firstAttribute="top" secondItem="zn3-vH-8RB" secondAttribute="bottom" id="xe6-6s-ez5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Browse" id="UY4-U4-QV0"/>
                     <connections>
+                        <outlet property="emptyView" destination="NcV-iH-bgQ" id="MSr-08-Hbo"/>
+                        <outlet property="queryEmptyLabel" destination="WJc-Js-eso" id="LEq-Ak-pCs"/>
                         <outlet property="searchBar" destination="77q-hv-r85" id="Plu-ff-Mgp"/>
                         <outlet property="tableView" destination="zn3-vH-8RB" id="RKg-d0-eiO"/>
                         <segue destination="pU5-XA-7Ul" kind="show" identifier="CarToDetail" id="gju-OV-4Je"/>
@@ -68,6 +95,10 @@
                                 <rect key="frame" x="0.0" y="201" width="375" height="402"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vvD-8W-yrg">
+                                <rect key="frame" x="0.0" y="201" width="375" height="402"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFM-xk-e1w">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
                                 <subviews>
@@ -112,14 +143,18 @@
                             <constraint firstAttribute="trailing" secondItem="AxB-dH-N9i" secondAttribute="trailing" id="8bc-Ea-Nga"/>
                             <constraint firstItem="wFM-xk-e1w" firstAttribute="top" secondItem="Ngo-CG-TeN" secondAttribute="bottom" id="Fah-tW-IFv"/>
                             <constraint firstAttribute="trailing" secondItem="AxB-dH-N9i" secondAttribute="trailing" id="LEB-gy-hq8"/>
+                            <constraint firstAttribute="trailing" secondItem="vvD-8W-yrg" secondAttribute="trailing" id="RrA-Wa-HMk"/>
                             <constraint firstAttribute="trailing" secondItem="wFM-xk-e1w" secondAttribute="trailing" id="SVd-XP-ZQp"/>
                             <constraint firstItem="uNc-3F-0Hf" firstAttribute="top" secondItem="AxB-dH-N9i" secondAttribute="bottom" id="TnB-2g-Din"/>
                             <constraint firstItem="uNc-3F-0Hf" firstAttribute="top" secondItem="wFM-xk-e1w" secondAttribute="bottom" id="Ver-aw-pBO"/>
+                            <constraint firstItem="vvD-8W-yrg" firstAttribute="height" secondItem="AxB-dH-N9i" secondAttribute="height" id="Vke-e4-6Ie"/>
                             <constraint firstItem="AxB-dH-N9i" firstAttribute="top" secondItem="Ngo-CG-TeN" secondAttribute="bottom" id="aNT-bb-M44"/>
+                            <constraint firstItem="vvD-8W-yrg" firstAttribute="width" secondItem="AxB-dH-N9i" secondAttribute="width" id="aog-DC-9BP"/>
                             <constraint firstItem="AxB-dH-N9i" firstAttribute="leading" secondItem="OPH-y9-yyo" secondAttribute="leading" id="f8I-Oi-xFS"/>
                             <constraint firstItem="AxB-dH-N9i" firstAttribute="top" secondItem="wFM-xk-e1w" secondAttribute="bottom" id="jCN-ak-DTe"/>
                             <constraint firstItem="AxB-dH-N9i" firstAttribute="top" secondItem="wFM-xk-e1w" secondAttribute="bottom" id="jaR-kZ-wZz"/>
                             <constraint firstItem="wFM-xk-e1w" firstAttribute="leading" secondItem="OPH-y9-yyo" secondAttribute="leading" id="mRb-Ly-2Ht"/>
+                            <constraint firstItem="uNc-3F-0Hf" firstAttribute="top" secondItem="vvD-8W-yrg" secondAttribute="bottom" id="sWZ-8b-PSg"/>
                             <constraint firstItem="AxB-dH-N9i" firstAttribute="leading" secondItem="wFM-xk-e1w" secondAttribute="trailing" id="uup-Yb-O7f"/>
                             <constraint firstItem="uNc-3F-0Hf" firstAttribute="top" secondItem="AxB-dH-N9i" secondAttribute="bottom" id="xPV-ij-zoc"/>
                         </constraints>
@@ -173,6 +208,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="emptyView" destination="vvD-8W-yrg" id="eo7-Yp-Gl6"/>
+                        <outlet property="nearbyDealershipsButton" destination="V56-Ce-18q" id="bOx-sk-V3Z"/>
                         <outlet property="tableView" destination="AxB-dH-N9i" id="ngC-M6-a02"/>
                         <segue destination="amE-D4-uaX" kind="show" identifier="DetailToDealership" id="cbr-Dn-Dcj"/>
                     </connections>
@@ -214,40 +251,78 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSk-9u-bce">
+                                <rect key="frame" x="16" y="0.0" width="343" height="603"/>
+                                <subviews>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We couldn't find any dealerships nearby to sell you that car" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KLp-kW-s5N">
+                                        <rect key="frame" x="51" y="271" width="241" height="61"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="241" id="dZo-8O-PYK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="KLp-kW-s5N" firstAttribute="centerX" secondItem="lSk-9u-bce" secondAttribute="centerX" id="ThH-wB-cza"/>
+                                    <constraint firstItem="KLp-kW-s5N" firstAttribute="centerY" secondItem="lSk-9u-bce" secondAttribute="centerY" id="g87-s6-8jc"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JaN-cA-Mo2">
                                 <rect key="frame" x="16" y="0.0" width="343" height="603"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HGp-t0-weW">
-                                        <rect key="frame" x="148" y="364" width="46" height="30"/>
+                                        <rect key="frame" x="78" y="364" width="187" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Open Location Permissions">
+                                            <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sorry, this app does not have permissions for accessing the location" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyN-Oc-Ad6">
+                                        <rect key="frame" x="46" y="228" width="264" height="77"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <searchBar contentMode="redraw" fixedFrame="YES" text="" placeholder="Search Makes" translatesAutoresizingMaskIntoConstraints="NO" id="UFl-Fz-cv4">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
                                 </subviews>
-                                <color key="backgroundColor" red="0.95686274770000002" green="0.32281900000000002" blue="0.23337878989999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="JaN-cA-Mo2" firstAttribute="leading" secondItem="aLV-Bt-d0l" secondAttribute="leadingMargin" id="3Eo-9j-34z"/>
+                            <constraint firstItem="lSk-9u-bce" firstAttribute="top" secondItem="TiA-uM-lbf" secondAttribute="bottom" id="3mQ-os-FMf"/>
                             <constraint firstItem="WH8-a6-1Rb" firstAttribute="leading" secondItem="aLV-Bt-d0l" secondAttribute="leading" id="7CK-Cz-6Aq"/>
+                            <constraint firstItem="IsJ-ls-iVs" firstAttribute="top" secondItem="lSk-9u-bce" secondAttribute="bottom" id="7Rt-MJ-VBU"/>
+                            <constraint firstItem="lSk-9u-bce" firstAttribute="leading" secondItem="aLV-Bt-d0l" secondAttribute="leadingMargin" id="8aS-oh-izb"/>
                             <constraint firstItem="JaN-cA-Mo2" firstAttribute="top" secondItem="TiA-uM-lbf" secondAttribute="bottom" id="MLo-WO-pyy"/>
                             <constraint firstAttribute="trailing" secondItem="WH8-a6-1Rb" secondAttribute="trailing" id="YSc-52-ds9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JaN-cA-Mo2" secondAttribute="trailing" id="fZa-zx-1dO"/>
                             <constraint firstItem="WH8-a6-1Rb" firstAttribute="top" secondItem="TiA-uM-lbf" secondAttribute="bottom" id="idO-pe-u0L"/>
                             <constraint firstItem="IsJ-ls-iVs" firstAttribute="top" secondItem="JaN-cA-Mo2" secondAttribute="bottom" id="kWm-Bq-pQW"/>
+                            <constraint firstItem="lSk-9u-bce" firstAttribute="trailing" secondItem="aLV-Bt-d0l" secondAttribute="trailingMargin" id="ncN-KU-53o"/>
                             <constraint firstItem="IsJ-ls-iVs" firstAttribute="top" secondItem="WH8-a6-1Rb" secondAttribute="bottom" id="sBw-ZI-res"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Dealership" id="1Rb-vl-Czs"/>
                     <connections>
-                        <outlet property="noGeolocation" destination="JaN-cA-Mo2" id="BME-1a-nik"/>
+                        <outlet property="emptyView" destination="JaN-cA-Mo2" id="qsE-Yj-5XU"/>
+                        <outlet property="emptyViewLabel" destination="LyN-Oc-Ad6" id="igj-hy-rXr"/>
                         <outlet property="openPermissionsButton" destination="HGp-t0-weW" id="OkV-aN-5cK"/>
                         <outlet property="tableView" destination="WH8-a6-1Rb" id="qAy-wi-dRS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OYh-Us-sIG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3294" y="-243"/>
+            <point key="canvasLocation" x="3293.5999999999999" y="-243.32833583208398"/>
         </scene>
         <!--Image Content Page View Controller-->
         <scene sceneID="SlK-p0-iL1">

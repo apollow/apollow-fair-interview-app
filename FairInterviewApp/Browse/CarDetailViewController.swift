@@ -12,6 +12,8 @@ import RxSwift
 import RxDataSources
 
 class CarDetailViewController: UIViewController {
+    @IBOutlet weak var nearbyDealershipsButton: UIBarButtonItem!
+    @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerView: UIView!
     weak var pageController : ImagePageViewController?
@@ -26,6 +28,9 @@ class CarDetailViewController: UIViewController {
         super.viewDidLoad()
         disposeBag = DisposeBag()
         getArticleLinks()
+        createAndEmbedActivityIndicator(view: emptyView).startAnimating()
+        self.title = .Car
+        nearbyDealershipsButton.title = .NearbyDealerships
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -44,6 +49,7 @@ class CarDetailViewController: UIViewController {
                 switch event {
                 case let .next(response):
                     self.articleList = Article.fromJSON(response.data)
+                    self.emptyView?.isHidden = true
                     self.configureTableDataSource()
                     self.configureNavigateOnRowClick()
                 case let .error(error):

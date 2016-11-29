@@ -18,20 +18,25 @@ private extension Reactive where Base: UIView {
         return UIBindingObserver(UIElement: base) { view, authorized in
             if authorized {
                 view.isHidden = true
-                view.superview?.sendSubview(toBack:view)
+//                view.superview?.sendSubview(toBack:view)
+                guard let label = view.viewWithTag(1) as? UILabel else {
+                    return
+                }
+                label.text = String.YouDontHaveGeolocationPermissions
             }
             else {
                 view.isHidden = false
-                view.superview?.bringSubview(toFront:view)
+//                view.superview?.bringSubview(toFront:view)
             }
         }
     }
 }
 
 class CarDealershipDetailViewController: UIViewController {
+    @IBOutlet weak var emptyViewLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var openPermissionsButton: UIButton!
-    @IBOutlet weak var noGeolocation: UIView!
+    @IBOutlet weak var emptyView: UIView!
     
     var car : Car = Car()
     var dealershipViewModel : DealerViewModel?
@@ -41,6 +46,9 @@ class CarDealershipDetailViewController: UIViewController {
         super.viewDidLoad()
         disposeBag = DisposeBag()
         let geolocationService = GeolocationService.instance
+        self.title = .Dealerships
+        createAndEmbedActivityIndicator(view: emptyView).startAnimating()
+        
         
         openPermissionsButton.rx.tap
             .bindNext { [weak self] in
@@ -49,7 +57,7 @@ class CarDealershipDetailViewController: UIViewController {
             .addDisposableTo(disposeBag!)
         
         geolocationService.authorized
-            .drive(noGeolocation.rx.driveAuthorization)
+            .drive(emptyView.rx.driveAuthorization)
             .addDisposableTo(disposeBag!)
         
         geolocationService.clocation
@@ -96,12 +104,11 @@ class CarDealershipDetailViewController: UIViewController {
     
     func configureTableDataSource() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        emptyViewLabel.text = String.NoDealerships
         
         dealershipViewModel!.data
             .map { (deals : [Dealer]) in
-                return deals.filter { deal in
-                    deal.active == true
-                }
+                return self.filterAndDetermineEmpty(deals)
             }
             .bindTo(tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) {
                 (_, viewModel, cell) in
@@ -126,5 +133,13 @@ class CarDealershipDetailViewController: UIViewController {
     
     private func openAppPreferences() {
         UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+    }
+    
+    func filterAndDetermineEmpty(_ list : [Dealer]) -> [Dealer] {
+        let filtered = list.filter { deal in
+            deal.active == true
+        }
+        self.emptyView.isHidden = !list.isEmpty
+        return filtered
     }
 }

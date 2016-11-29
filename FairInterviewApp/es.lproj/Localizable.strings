@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  SwiftyStrings
+
+  Created by Maciej Piotrowski on 20/11/16.
+  Copyright © 2016 Maciej Piotrowski. All rights reserved.
+*/
+"Browse" = "Vistazo";
+"Dealerships" = "Concesionarios";
+"Nearby Dealerships" = "Los concesionarios cercanos";
+"Car" = "Coche";
+"We couldn't find a dealership nearby with your car" = "No pudimos encontrar un concesionario cerca con su coche";
+"Sorry, this app does not have permissions for accessing the location" = "Lo sentimos, esta aplicación no tiene permisos para acceder a la ubicación";

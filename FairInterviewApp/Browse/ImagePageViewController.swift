@@ -22,7 +22,6 @@ class ImagePageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
-        delegate = self
     }
     
     func setup() {
@@ -31,12 +30,6 @@ class ImagePageViewController: UIPageViewController {
         }
     }
     
-    /**
-     Scrolls to the view controller at the given index. Automatically calculates
-     the direction.
-     
-     - parameter newIndex: the new index to scroll to
-     */
     func scrollToViewController(index newIndex: Int) {
         if let firstViewController = viewControllers?.first,
             let currentIndex = orderedViewControllers?.index(of: firstViewController) {
@@ -46,29 +39,16 @@ class ImagePageViewController: UIPageViewController {
         }
     }
     
-
-    
-    /**
-     Scrolls to the given 'viewController' page.
-     
-     - parameter viewController: the view controller to show.
-     */
     private func scrollToViewController(viewController: UIViewController,
                                         direction: UIPageViewControllerNavigationDirection = .forward) {
         setViewControllers([viewController],
                            direction: direction,
                            animated: true,
                            completion: { (finished) -> Void in
-                            // Setting the view controller programmatically does not fire
-                            // any delegate methods, so we have to manually notify the
-                            // 'tutorialDelegate' of the new index.
                             self.notifyDelegateOfNewIndex()
         })
     }
     
-    /**
-     Notifies '_tutorialDelegate' that the current page index was updated.
-     */
     fileprivate func notifyDelegateOfNewIndex() {
         if let firstViewController = viewControllers?.first,
             let index = orderedViewControllers?.index(of: firstViewController) {
@@ -122,17 +102,6 @@ extension ImagePageViewController: UIPageViewControllerDataSource {
         }
         
         return orderedViewControllers![nextIndex]
-    }
-    
-}
-
-extension ImagePageViewController: UIPageViewControllerDelegate {
-    
-    func pageViewController(pageViewController: UIPageViewController,
-                            didFinishAnimating finished: Bool,
-                            previousViewControllers: [UIViewController],
-                            transitionCompleted completed: Bool) {
-        notifyDelegateOfNewIndex()
     }
     
 }

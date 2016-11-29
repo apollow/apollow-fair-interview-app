@@ -11,8 +11,12 @@ import RxSwift
 import RxDataSources
 
 class RootViewController: UIViewController {
+    @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var queryEmptyLabel: UILabel!
+    
+    var activityIndicator : UIActivityIndicatorView?
     var disposeBag : DisposeBag?
     var carViewModel : CarViewModel?
     
@@ -20,7 +24,10 @@ class RootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         disposeBag = DisposeBag()
+        activityIndicator = createAndEmbedActivityIndicator(view: emptyView)
+        activityIndicator?.startAnimating()
         makeModelsRequest()
+        self.title = .Browse
     }
     
     func configureTableDataSource() {
@@ -32,9 +39,7 @@ class RootViewController: UIViewController {
             .flatMapLatest { query in
                 self.carViewModel!.data
                     .map {
-                        return (query.isEmpty) ? $0 : $0.filter { car in
-                            car.make.lowercased().contains(query.lowercased())
-                        }
+                        self.filterAndDetermineEmpty(query, $0)
                     }
                     .asDriver(onErrorJustReturn: [])
             }
@@ -44,11 +49,6 @@ class RootViewController: UIViewController {
                 cell.dataModel = viewModel
             }
             .addDisposableTo(disposeBag!)
-        
-//        results
-//            .map { self.carViewModel!.data.count != 0 }
-//            .drive(self.emptyView.rx.isHidden)
-//            .addDisposableTo(disposeBag)
     }
     
     
@@ -59,6 +59,8 @@ class RootViewController: UIViewController {
             switch event {
                 case let .next(response):
                     self.carViewModel = CarViewModel(response: response.data)
+                    self.activityIndicator?.stopAnimating()
+                    self.queryEmptyLabel?.isHidden = false
                     self.configureTableDataSource()
                     self.configureNavigateOnRowClick()
             case let .error(error):
@@ -71,11 +73,9 @@ class RootViewController: UIViewController {
     
     
     func configureNavigateOnRowClick() {
-        
         tableView.rx.modelSelected(Car.self)
             .asDriver()
             .drive(onNext: { car in
-//                self.showAlert(car.getImageUrlString())
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let viewController = storyboard.instantiateViewController(withIdentifier: "CarDetailViewController") as! CarDetailViewController
                 viewController.car = car
@@ -84,15 +84,12 @@ class RootViewController: UIViewController {
             .addDisposableTo(disposeBag!)
     }
     
-    
-    func showAlert(_ message: String) {
-        #if os(iOS)
-            UIAlertView(title: "RxExample", message: message, delegate: nil, cancelButtonTitle: "OK").show()
-        #elseif os(macOS)
-            let alert = NSAlert()
-            alert.messageText = message
-            alert.runModal()
-        #endif
+    func filterAndDetermineEmpty(_ query : String, _ list : [Car]) -> [Car] {
+        let filtered = list.filter { car in
+            car.make.lowercased().contains(query.lowercased())
+        }
+        self.emptyView.isHidden = (!filtered.isEmpty || query.isEmpty)
+        return (query.isEmpty) ? list : filtered
     }
 }
 
