@@ -76,8 +76,7 @@ class RootViewController: UIViewController {
         tableView.rx.modelSelected(Car.self)
             .asDriver()
             .drive(onNext: { car in
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let viewController = storyboard.instantiateViewController(withIdentifier: "CarDetailViewController") as! CarDetailViewController
+                let viewController = UIStoryboard.main().viewController(withID: .CarDetail) as! CarDetailViewController
                 viewController.car = car
                 self.navigationController?.pushViewController(viewController, animated: false)
             })

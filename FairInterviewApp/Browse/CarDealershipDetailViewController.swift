@@ -18,38 +18,47 @@ private extension Reactive where Base: UIView {
         return UIBindingObserver(UIElement: base) { view, authorized in
             if authorized {
                 view.isHidden = true
-//                view.superview?.sendSubview(toBack:view)
-                guard let label = view.viewWithTag(1) as? UILabel else {
-                    return
+                if let label = view.viewWithTag(1) as? UILabel {
+                    label.text = String.YouDontHaveGeolocationPermissions
                 }
-                label.text = String.YouDontHaveGeolocationPermissions
+                
+                if let activityIndicator = view.viewWithTag(2) as? UIActivityIndicatorView {
+                    activityIndicator.stopAnimating()
+                }
             }
             else {
                 view.isHidden = false
-//                view.superview?.bringSubview(toFront:view)
+                if let activityIndicator = view.viewWithTag(2) as? UIActivityIndicatorView {
+                    activityIndicator.startAnimating()
+                }
             }
         }
     }
 }
 
-class CarDealershipDetailViewController: UIViewController {
+class CarDealershipDetailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emptyViewLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var openPermissionsButton: UIButton!
     @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var zipcodeField: UITextField!
     
     var car : Car = Car()
     var dealershipViewModel : DealerViewModel?
     var disposeBag : DisposeBag?
+    var activityIndicator : UIActivityIndicatorView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        disposeBag = DisposeBag()
         let geolocationService = GeolocationService.instance
         self.title = .Dealerships
-        createAndEmbedActivityIndicator(view: emptyView).startAnimating()
+        activityIndicator = createAndEmbedActivityIndicator(view: emptyView)
+        activityIndicator?.startAnimating()
+        activityIndicator?.tag = 2
         
         
+        //DisposeBag for getting nearby zip code
+        disposeBag = DisposeBag()
         openPermissionsButton.rx.tap
             .bindNext { [weak self] in
                 self?.openAppPreferences()
@@ -67,26 +76,30 @@ class CarDealershipDetailViewController: UIViewController {
                 (array, error) in
                     if (error != nil) {
                     } else {
-                        self.getDealerships(array)
+                        self.getDealerships(array: array)
                     }
                 })
             }, onCompleted: {
                 
             }).addDisposableTo(disposeBag!)
         
+        zipcodeField.delegate = self
     }
     
-    func getDealerships(_ array : [CLPlacemark]?) {
+    func getDealerships(array : [CLPlacemark]?) {
         guard let arr = array else {
             return
         }
         if (arr.isEmpty) {
             return
         }
+        let zipcode = arr.last!.postalCode!
+        getDealerships(zipcode : zipcode)
+    }
+    
+    func getDealerships(zipcode : String) {
         disposeBag = DisposeBag()
-        let zipcode = arr.last!.postalCode
-        
-        EdmundProvider.request(.dealershipsForVehicle(zip: zipcode!, make: car.make))
+        EdmundProvider.request(.dealershipsForVehicle(zip: zipcode, make: car.make))
             .retry(3)
             .subscribe { event in
                 switch event {
@@ -133,6 +146,13 @@ class CarDealershipDetailViewController: UIViewController {
     
     private func openAppPreferences() {
         UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == zipcodeField && !textField.text!.isEmpty {
+            getDealerships(zipcode: textField.text!)
+        }
+        return true
     }
     
     func filterAndDetermineEmpty(_ list : [Dealer]) -> [Dealer] {

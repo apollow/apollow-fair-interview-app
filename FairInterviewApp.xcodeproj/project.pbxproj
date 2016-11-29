@@ -31,6 +31,9 @@
 		7573D1DE1DED45C9002AEF2F /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7573D1DD1DED45C9002AEF2F /* UIViewControllerExtension.swift */; };
 		7573D1E01DED54D0002AEF2F /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7573D1DF1DED54D0002AEF2F /* String+Localized.swift */; };
 		7573D1E41DED5696002AEF2F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7573D1E21DED5696002AEF2F /* Localizable.strings */; };
+		7573D1E81DEE0EA5002AEF2F /* BrowseViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7573D1E71DEE0EA5002AEF2F /* BrowseViewControllerTests.swift */; };
+		7573D1EA1DEE1203002AEF2F /* UIStoryboardExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7573D1E91DEE1203002AEF2F /* UIStoryboardExtensions.swift */; };
+		7573D1EC1DEE1305002AEF2F /* String+Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7573D1EB1DEE1305002AEF2F /* String+Storyboards.swift */; };
 		75795B811DEC19FC0050CDA5 /* ImagePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75795B801DEC19FC0050CDA5 /* ImagePageViewController.swift */; };
 		75795B831DEC1F3E0050CDA5 /* ImageContentPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75795B821DEC1F3E0050CDA5 /* ImageContentPageViewController.swift */; };
 		758B6D191DEA351B0026B002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B6D181DEA351B0026B002 /* AppDelegate.swift */; };
@@ -81,6 +84,9 @@
 		7573D1DF1DED54D0002AEF2F /* String+Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Localized.swift"; path = "Constants/String+Localized.swift"; sourceTree = "<group>"; };
 		7573D1E31DED5696002AEF2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7573D1E61DED5C5C002AEF2F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7573D1E71DEE0EA5002AEF2F /* BrowseViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseViewControllerTests.swift; sourceTree = "<group>"; };
+		7573D1E91DEE1203002AEF2F /* UIStoryboardExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIStoryboardExtensions.swift; path = Extensions/UIStoryboardExtensions.swift; sourceTree = "<group>"; };
+		7573D1EB1DEE1305002AEF2F /* String+Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Storyboards.swift"; path = "Constants/String+Storyboards.swift"; sourceTree = "<group>"; };
 		75795B801DEC19FC0050CDA5 /* ImagePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagePageViewController.swift; path = Browse/ImagePageViewController.swift; sourceTree = "<group>"; };
 		75795B821DEC1F3E0050CDA5 /* ImageContentPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageContentPageViewController.swift; path = Browse/ImageContentPageViewController.swift; sourceTree = "<group>"; };
 		758B6D151DEA351B0026B002 /* FairInterviewApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FairInterviewApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +144,7 @@
 				75109FFC1DEA7FB100F5159B /* APIUrls.swift */,
 				7573D1E21DED5696002AEF2F /* Localizable.strings */,
 				7573D1DF1DED54D0002AEF2F /* String+Localized.swift */,
+				7573D1EB1DEE1305002AEF2F /* String+Storyboards.swift */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -182,6 +189,7 @@
 				75462B391DEAC84B00C2D04A /* UIImageView+DownloadableImage.swift */,
 				75462B4B1DEB95F800C2D04A /* UIImageExtension.swift */,
 				7573D1DD1DED45C9002AEF2F /* UIViewControllerExtension.swift */,
+				7573D1E91DEE1203002AEF2F /* UIStoryboardExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -229,6 +237,7 @@
 			children = (
 				758B6D311DEA351B0026B002 /* FairInterviewAppTests.swift */,
 				758B6D331DEA351B0026B002 /* Info.plist */,
+				7573D1E71DEE0EA5002AEF2F /* BrowseViewControllerTests.swift */,
 			);
 			path = FairInterviewAppTests;
 			sourceTree = "<group>";
@@ -490,6 +499,7 @@
 				75525A661DEBD800002578B7 /* GeolocationService.swift in Sources */,
 				75462B491DEB955200C2D04A /* Reachability.swift in Sources */,
 				7573D1DE1DED45C9002AEF2F /* UIViewControllerExtension.swift in Sources */,
+				7573D1EA1DEE1203002AEF2F /* UIStoryboardExtensions.swift in Sources */,
 				75462B3A1DEAC84B00C2D04A /* UIImageView+DownloadableImage.swift in Sources */,
 				75525A611DEBD5A0002578B7 /* Dealer.swift in Sources */,
 				759FEF741DEBC43600CB76C8 /* Article.swift in Sources */,
@@ -503,6 +513,7 @@
 				75109FFD1DEA7FB100F5159B /* APIUrls.swift in Sources */,
 				75462B481DEB955200C2D04A /* ImageService.swift in Sources */,
 				75462B4E1DEBB8DF00C2D04A /* CarDetailViewController.swift in Sources */,
+				7573D1EC1DEE1305002AEF2F /* String+Storyboards.swift in Sources */,
 				75795B811DEC19FC0050CDA5 /* ImagePageViewController.swift in Sources */,
 				758B6D191DEA351B0026B002 /* AppDelegate.swift in Sources */,
 				75462B471DEB955200C2D04A /* DownloadableImage.swift in Sources */,
@@ -520,6 +531,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7573D1E81DEE0EA5002AEF2F /* BrowseViewControllerTests.swift in Sources */,
 				758B6D321DEA351B0026B002 /* FairInterviewAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -83,8 +83,7 @@ class CarDetailViewController: UIViewController {
     }
     
     @IBAction func onDealershipTap(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "CarDealershipDetailViewController") as! CarDealershipDetailViewController
+        let viewController = UIStoryboard.main().viewController(withID: .CarDealership) as! CarDealershipDetailViewController
         viewController.car = car
         self.navigationController?.pushViewController(viewController, animated: false)
     }
@@ -102,11 +101,10 @@ class CarDetailViewController: UIViewController {
     }
     
     func createImagePageViewControllers() -> [UIViewController] {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         var list : [UIViewController] = []
         
         for i in 0..<imageTypes.count {
-            let viewController = storyboard.instantiateViewController(withIdentifier: "ImageContentPageViewController") as! ImageContentPageViewController
+            let viewController = UIStoryboard.main().viewController(withID: .ImageContentViewController) as! ImageContentPageViewController
             viewController.urlString = (car.getImageUrlString(type: imageTypes[i]))
             list.append(viewController)
         }
