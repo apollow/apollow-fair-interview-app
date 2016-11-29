@@ -25,7 +25,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zn3-vH-8RB">
                                 <rect key="frame" x="16" y="0.0" width="343" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Repository search" id="77q-hv-r85">
+                                <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Search Cars" id="77q-hv-r85">
                                     <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -54,6 +54,7 @@
         <!--Car-->
         <scene sceneID="17a-ah-7Tu">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nAo-yG-cWA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="CarDetailViewController" id="pU5-XA-7Ul" customClass="CarDetailViewController" customModule="FairInterviewApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ngo-CG-TeN"/>
@@ -70,17 +71,20 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFM-xk-e1w">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2dp-mo-HGt">
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MXi-rO-0jb">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
-                                    </imageView>
+                                        <connections>
+                                            <segue destination="Hii-SA-arV" kind="embed" identifier="imagePageSegue" id="dpT-p1-T9r"/>
+                                        </connections>
+                                    </containerView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="2dp-mo-HGt" secondAttribute="bottom" id="EPJ-XB-bn5"/>
-                                    <constraint firstAttribute="trailing" secondItem="2dp-mo-HGt" secondAttribute="trailing" id="Gnw-KT-qZr"/>
-                                    <constraint firstItem="2dp-mo-HGt" firstAttribute="top" secondItem="wFM-xk-e1w" secondAttribute="top" id="cYj-1j-D9m"/>
+                                    <constraint firstAttribute="trailing" secondItem="MXi-rO-0jb" secondAttribute="trailing" id="831-Ff-1rk"/>
                                     <constraint firstAttribute="width" constant="321" id="gCa-J7-lmA"/>
-                                    <constraint firstItem="2dp-mo-HGt" firstAttribute="leading" secondItem="wFM-xk-e1w" secondAttribute="leading" id="pt6-Gy-rY7"/>
+                                    <constraint firstAttribute="bottom" secondItem="MXi-rO-0jb" secondAttribute="bottom" id="lz5-9l-BxK"/>
+                                    <constraint firstItem="MXi-rO-0jb" firstAttribute="top" secondItem="wFM-xk-e1w" secondAttribute="top" id="pgR-4l-itQ"/>
+                                    <constraint firstItem="MXi-rO-0jb" firstAttribute="leading" secondItem="wFM-xk-e1w" secondAttribute="leading" id="vzl-gC-40X"/>
                                     <constraint firstAttribute="height" constant="201" id="wL3-1c-Ld7"/>
                                 </constraints>
                                 <variation key="default">
@@ -169,12 +173,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="carImageView" destination="2dp-mo-HGt" id="qeE-Ii-hXS"/>
                         <outlet property="tableView" destination="AxB-dH-N9i" id="ngC-M6-a02"/>
                         <segue destination="amE-D4-uaX" kind="show" identifier="DetailToDealership" id="cbr-Dn-Dcj"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nAo-yG-cWA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2440.8000000000002" y="-241.52923538230885"/>
         </scene>
@@ -246,6 +248,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OYh-Us-sIG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3294" y="-243"/>
+        </scene>
+        <!--Image Content Page View Controller-->
+        <scene sceneID="SlK-p0-iL1">
+            <objects>
+                <viewController storyboardIdentifier="ImageContentPageViewController" id="z1b-3v-Z8q" customClass="ImageContentPageViewController" customModule="FairInterviewApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ctz-fR-QaU"/>
+                        <viewControllerLayoutGuide type="bottom" id="cwW-7n-BjM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fYM-8C-2Iw" customClass="CarContentPageViewController">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7vX-02-uRP">
+                                <rect key="frame" x="16" y="0.0" width="343" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="7vX-02-uRP" secondAttribute="trailing" id="Awa-kv-CWz"/>
+                            <constraint firstItem="cwW-7n-BjM" firstAttribute="top" secondItem="7vX-02-uRP" secondAttribute="bottom" id="LiV-k2-P7G"/>
+                            <constraint firstItem="7vX-02-uRP" firstAttribute="top" secondItem="ctz-fR-QaU" secondAttribute="bottom" id="N0J-Q1-uA7"/>
+                            <constraint firstItem="7vX-02-uRP" firstAttribute="leading" secondItem="fYM-8C-2Iw" secondAttribute="leadingMargin" id="Smb-hn-yfK"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ptq-6J-H2M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2441" y="-1254"/>
+        </scene>
+        <!--Image Page View Controller-->
+        <scene sceneID="QPa-PG-MEo">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gni-i9-uoF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pageViewController storyboardIdentifier="ImagePageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="Hii-SA-arV" customClass="ImagePageViewController" customModule="FairInterviewApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="z1b-3v-Z8q" kind="presentation" id="wg5-dr-vMs"/>
+                    </connections>
+                </pageViewController>
+            </objects>
+            <point key="canvasLocation" x="2441" y="-750"/>
         </scene>
     </scenes>
 </document>

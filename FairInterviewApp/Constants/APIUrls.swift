@@ -9,14 +9,9 @@
 import Foundation
 
 class APIUrls {
-    
     static func GETCARIMAGE(make: String, model: String,
-                            year : Int, trim : String,
+                            year : Int, type : String,
                             size : String? = "190x97") -> String {
-        return "https://a.tcimg.net/v/model_images/v1/\(year)/\(make)/\(model)/all/\(size!)/\(trim)"
-    }
-    
-    static func GETCARIMAGE(car : Car, size : String? = "190x97") -> String {
-        return GETCARIMAGE(make: car.make, model: car.model, year: car.year, trim: car.trim, size: size!)
+        return "https://a.tcimg.net/v/model_images/v1/\(year)/\(make)/\(model)/all/\(size!)/\(type)"
     }
 }

@@ -36,8 +36,8 @@ struct Car {
         self.trim = ""
     }
     
-    func getImageUrlString(trim : String? = "side") -> String {
-        return APIUrls.GETCARIMAGE(make: make, model: model, year: year, trim: trim ?? "side")
+    func getImageUrlString(type : String? = "side") -> String {
+        return APIUrls.GETCARIMAGE(make: make, model: model, year: year, type: type ?? "side")
     }
     
     public var getDetailedDescription: [String] {
@@ -60,10 +60,9 @@ struct Car {
         }
         for m in models {
             let model = m["niceName"].stringValue
-            let trim = m["niceName"].stringValue
 //            let year = m["years"].arrayValue[0]["year"].intValue
             let year = m["years"][0]["year"].intValue
-            carList.append(Car(id, name, make, model, year, trim))
+            carList.append(Car(id, name, make, model, year, ""))
         }
         
         return carList

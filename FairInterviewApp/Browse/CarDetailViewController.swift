@@ -13,9 +13,12 @@ import RxDataSources
 
 class CarDetailViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var carImageView: UIImageView!
+    @IBOutlet weak var containerView: UIView!
+    weak var pageController : ImagePageViewController?
+    var imageTypes : [String] = ["side", "f3q"]
     
     var car : Car = Car()
+    var currPageNdx : Int = 0
     var articleList : [String]?
     
     var disposeBag : DisposeBag?
@@ -23,14 +26,14 @@ class CarDetailViewController: UIViewController {
         super.viewDidLoad()
         disposeBag = DisposeBag()
         getArticleLinks()
-        
-        
-        let url = URL(string: car.getImageUrlString())!
-        let imageService = DefaultImageService.sharedImageService
-        imageService.imageFromURL(url)
-            .asDriver(onErrorJustReturn: DownloadableImage.offlinePlaceholder)
-            .drive(carImageView.rx.downloadableImageAnimated(kCATransitionFade))
-            .addDisposableTo(disposeBag!)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let segueName = segue.identifier
+        if segueName == "imagePageSegue" {
+            pageController = segue.destination as? ImagePageViewController
+            pageController?.orderedViewControllers = createImagePageViewControllers()
+        }
     }
     
     
@@ -91,4 +94,18 @@ class CarDetailViewController: UIViewController {
             })
             .addDisposableTo(disposeBag!)
     }
+    
+    func createImagePageViewControllers() -> [UIViewController] {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var list : [UIViewController] = []
+        
+        for i in 0..<imageTypes.count {
+            let viewController = storyboard.instantiateViewController(withIdentifier: "ImageContentPageViewController") as! ImageContentPageViewController
+            viewController.urlString = (car.getImageUrlString(type: imageTypes[i]))
+            list.append(viewController)
+        }
+        
+        return list
+    }
+    
 }
