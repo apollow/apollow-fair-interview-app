@@ -52,10 +52,12 @@ class BrowseViewControllerSpec: QuickSpec {
         describe("view") {
             var subject: RootViewController!
             var searchBar : UISearchBar!
+            var disposeBag : DisposeBag?
             
             beforeEach {
+                disposeBag = DisposeBag()
+                
                 subject = UIStoryboard.main().viewController(withID: .Browse) as! RootViewController
-                subject.loadViewProgrammatically()
                 searchBar = subject.searchBar
 //                
 //                subject.reachability = fakeReachability.asObservable()
@@ -63,40 +65,42 @@ class BrowseViewControllerSpec: QuickSpec {
             }
             
             it("contains the search bar necessary for searching"){
-                expect(searchBar.isHidden) == false
+                subject.loadViewProgrammatically()
+                expect(subject.searchBar.isHidden) == false
             }
             
             describe("loading") {
                 it ("shows emptyview when loading") {
+                subject.loadViewProgrammatically()
                     expect(subject.emptyView.isHidden) == false
                 }
             }
             
             describe("browse and search") {
-//                beforeEach {
-//                    let target: EdmundSimpleAPI = .make
-//                    getEdmundProvider().request(target) { result in
-//                        if case let .success(response) = result {
-//                            subject.carViewModel = CarViewModel(response : response.data)
-//                            subject.configureTableDataSource()
-//                        }
-//                    }
-//                }
+                beforeEach {
+                    let target: EdmundSimpleAPI = .make
+                    getEdmundProvider().request(target) { result in
+                        if case let .success(response) = result {
+                            subject.carViewModel = CarViewModel(response : response.data)
+                            subject.configureTableDataSource()
+                        }
+                    }
+                }
                 
                 it ("searches for cars") {
-                    let disposeBag = DisposeBag()
+                    subject.loadViewProgrammatically()
                     let str = Observable.just("GMC")
-                    str.bindTo(searchBar.rx.text).addDisposableTo(disposeBag)
-                    expect(searchBar.text) == "GMC"
+                    str.bindTo(subject.searchBar.rx.text).addDisposableTo(disposeBag!)
+                    expect(subject.searchBar.text) == "GMC"
                     expect(subject.emptyView.isHidden).toEventually(beTrue())
                 }
                 
                 it ("shows emptyview if no cars are found in query") {
-                    let disposeBag = DisposeBag()
-                    let dne = Observable.just("_____ThisCarProductDoesNotExist😑")
+                    subject.loadViewProgrammatically()
+                    let dne = Observable.just("Addcura")
                     
-                    dne.bindTo(searchBar.rx.text).addDisposableTo(disposeBag)
-                    expect(searchBar.text) == "_____ThisCarProductDoesNotExist😑"
+                    dne.bindTo(subject.searchBar.rx.text).addDisposableTo(disposeBag!)
+                    expect(subject.searchBar.text) == "Addcura"
                     expect(subject.emptyView.isHidden).toEventually(beFalse())
                 }
             }

@@ -61,7 +61,7 @@ class RootViewController: UIViewController {
                     self.carViewModel = CarViewModel(response: response.data)
                     self.activityIndicator?.stopAnimating()
                     self.queryEmptyLabel?.isHidden = false
-                    self.configureTableDataSource()
+//                    self.configureTableDataSource()
                     self.configureNavigateOnRowClick()
             case let .error(error):
                 print(error)
@@ -84,6 +84,7 @@ class RootViewController: UIViewController {
     }
     
     func filterAndDetermineEmpty(_ query : String, _ list : [Car]) -> [Car] {
+        print(query)
         let filtered = list.filter { car in
             car.make.lowercased().contains(query.lowercased())
         }
