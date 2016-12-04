@@ -99,7 +99,7 @@ class CarDealershipDetailViewController: UIViewController, UITextFieldDelegate {
     
     func getDealerships(zipcode : String) {
         disposeBag = DisposeBag()
-        EdmundProvider.request(.dealershipsForVehicle(zip: zipcode, make: car.make))
+        getEdmundProvider().request(.dealershipsForVehicle(zip: zipcode, make: car.make))
             .retry(3)
             .subscribe { event in
                 switch event {

@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import UIKit
 import Nimble
 import Nimble_Snapshots
+import Moya
 import Quick
 import RxSwift
 @testable
@@ -16,38 +18,87 @@ import FairInterviewApp
 
 class BrowseViewControllerSpec: QuickSpec {
     override func spec() {
-        describe("view") {
-            var subject: RootViewController!
-            var fakeReachability: Variable<Bool>!
+        beforeSuite {
+        }
+        
+        describe("provider") {
+            var response: Response?
             
             beforeEach {
-                subject = RootViewController.instantiate(from: auctionStoryboard)
-                subject.provider = Networking.newStubbingNetworking()
-                fakeReachability = Variable(true)
-                
-                subject.reachability = fakeReachability.asObservable()
-                subject.apiPinger = Observable.just(true).take(1)
+                let target: EdmundSimpleAPI = .make
+                getEdmundProvider(isTestMode: true).request(target) { result in
+                    if case let .success(resp) = result {
+                        response = resp
+                    }
+                }
             }
             
-            it("shows the offlineBlockingView when offline  is true"){
-                subject.loadViewProgrammatically()
-                
-                subject.offlineBlockingView.isHidden = false
-                
-                fakeReachability.value = true
-                expect(subject.offlineBlockingView.isHidden) == true
+            it("gets the list of car apis") {
+                expect(response).toNot(beNil())
+                expect(response!.request).toNot(beNil())
             }
             
-            it("hides the offlineBlockingView when offline  is false"){
+            it("is properly parsed") {
+                expect(response).toNot(beNil())
+                let data = response!.data
+                expect(data).toNot(beNil())
+                expect{
+                    let list = try Car.fromJSONIntoList(data)
+                    return expect(list.count).to(beGreaterThan(0))
+                }.toNot(throwError())
+            }
+        }
+        
+        describe("view") {
+            var subject: RootViewController!
+            var searchBar : UISearchBar!
+            
+            beforeEach {
+                subject = UIStoryboard.main().viewController(withID: .Browse) as! RootViewController
                 subject.loadViewProgrammatically()
+                searchBar = subject.searchBar
+//                
+//                subject.reachability = fakeReachability.asObservable()
+//                subject.apiPinger = Observable.just(true).take(1)
+            }
+            
+            it("contains the search bar necessary for searching"){
+                expect(searchBar.isHidden) == false
+            }
+            
+            describe("loading") {
+                it ("shows emptyview when loading") {
+                    expect(subject.emptyView.isHidden) == false
+                }
+            }
+            
+            describe("browse and search") {
+//                beforeEach {
+//                    let target: EdmundSimpleAPI = .make
+//                    getEdmundProvider().request(target) { result in
+//                        if case let .success(response) = result {
+//                            subject.carViewModel = CarViewModel(response : response.data)
+//                            subject.configureTableDataSource()
+//                        }
+//                    }
+//                }
                 
-                fakeReachability.value = true
-                expect(subject.offlineBlockingView.isHidden) == true
+                it ("searches for cars") {
+                    let disposeBag = DisposeBag()
+                    let str = Observable.just("GMC")
+                    str.bindTo(searchBar.rx.text).addDisposableTo(disposeBag)
+                    expect(searchBar.text) == "GMC"
+                    expect(subject.emptyView.isHidden).toEventually(beTrue())
+                }
                 
-                
-                fakeReachability.value = false
-                expect(subject.offlineBlockingView.isHidden) == false
-                
+                it ("shows emptyview if no cars are found in query") {
+                    let disposeBag = DisposeBag()
+                    let dne = Observable.just("_____ThisCarProductDoesNotExist😑")
+                    
+                    dne.bindTo(searchBar.rx.text).addDisposableTo(disposeBag)
+                    expect(searchBar.text) == "_____ThisCarProductDoesNotExist😑"
+                    expect(subject.emptyView.isHidden).toEventually(beFalse())
+                }
             }
         }
     }

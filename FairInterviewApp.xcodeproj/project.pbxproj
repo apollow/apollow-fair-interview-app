@@ -28,6 +28,7 @@
 		75525A691DEBD856002578B7 /* CLLocationManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75525A671DEBD856002578B7 /* CLLocationManager+Rx.swift */; };
 		75525A6A1DEBD856002578B7 /* RxCLLocationManagerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75525A681DEBD856002578B7 /* RxCLLocationManagerDelegateProxy.swift */; };
 		75525A6C1DEC03F0002578B7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75525A6B1DEC03F0002578B7 /* MapKit.framework */; };
+		756BA4401DF3C392004EABA5 /* Make.json in Resources */ = {isa = PBXBuildFile; fileRef = 756BA43F1DF3C392004EABA5 /* Make.json */; };
 		7573D1DE1DED45C9002AEF2F /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7573D1DD1DED45C9002AEF2F /* UIViewControllerExtension.swift */; };
 		7573D1E01DED54D0002AEF2F /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7573D1DF1DED54D0002AEF2F /* String+Localized.swift */; };
 		7573D1E41DED5696002AEF2F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7573D1E21DED5696002AEF2F /* Localizable.strings */; };
@@ -80,6 +81,7 @@
 		75525A671DEBD856002578B7 /* CLLocationManager+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CLLocationManager+Rx.swift"; path = "Extensions/CLLocationManager+Rx.swift"; sourceTree = "<group>"; };
 		75525A681DEBD856002578B7 /* RxCLLocationManagerDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RxCLLocationManagerDelegateProxy.swift; path = Extensions/RxCLLocationManagerDelegateProxy.swift; sourceTree = "<group>"; };
 		75525A6B1DEC03F0002578B7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		756BA43F1DF3C392004EABA5 /* Make.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Make.json; path = Managers/StubbedResponses/Make.json; sourceTree = "<group>"; };
 		7573D1DD1DED45C9002AEF2F /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewControllerExtension.swift; path = Extensions/UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		7573D1DF1DED54D0002AEF2F /* String+Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Localized.swift"; path = "Constants/String+Localized.swift"; sourceTree = "<group>"; };
 		7573D1E31DED5696002AEF2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		7510A0001DEA852000F5159B /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				756BA43E1DF3C32F004EABA5 /* StubbedResponses */,
 				7510A0011DEA853B00F5159B /* EdmundSimpleAPI.swift */,
 			);
 			name = Managers;
@@ -192,6 +195,14 @@
 				7573D1E91DEE1203002AEF2F /* UIStoryboardExtensions.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		756BA43E1DF3C32F004EABA5 /* StubbedResponses */ = {
+			isa = PBXGroup;
+			children = (
+				756BA43F1DF3C392004EABA5 /* Make.json */,
+			);
+			name = StubbedResponses;
 			sourceTree = "<group>";
 		};
 		758B6D0C1DEA351B0026B002 = {
@@ -382,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7573D1E41DED5696002AEF2F /* Localizable.strings in Resources */,
+				756BA4401DF3C392004EABA5 /* Make.json in Resources */,
 				758B6D431DEA36A40026B002 /* Main.storyboard in Resources */,
 				758B6D421DEA36A40026B002 /* LaunchScreen.storyboard in Resources */,
 				75462B3C1DEB907900C2D04A /* CarTableViewCell.xib in Resources */,

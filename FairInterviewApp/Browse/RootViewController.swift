@@ -53,7 +53,7 @@ class RootViewController: UIViewController {
     
     
     func makeModelsRequest() {
-        EdmundProvider.request(.make)
+        getEdmundProvider().request(.make)
             .retry(3)
             .subscribe { event in
             switch event {

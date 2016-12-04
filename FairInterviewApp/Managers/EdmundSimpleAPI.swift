@@ -36,7 +36,22 @@ private func JSONResponseDataFormatter(_ data: Data) -> Data {
 }
 
 //let EdmundProvider = RxMoyaProvider<EdmundSimpleAPI>(plugins: [NetworkLoggerPlugin(verbose: true, responseDataFormatter: JSONResponseDataFormatter)])
-let EdmundProvider = RxMoyaProvider<EdmundSimpleAPI>(plugins: [])
+private let EdmundProvider = RxMoyaProvider<EdmundSimpleAPI>(plugins: [])
+private let StubEdmundProvider = RxMoyaProvider<EdmundSimpleAPI>(stubClosure: MoyaProvider.immediatelyStub)
+
+func isRunningUnitTests() -> Bool {
+    let env = ProcessInfo.processInfo.environment
+    if let injectBundle = env["XCInjectBundle"] {
+        return NSString(string: injectBundle).pathExtension == "xctest"
+    }
+    return false
+}
+
+
+func getEdmundProvider(isTestMode : Bool? = false) -> RxMoyaProvider<EdmundSimpleAPI> {
+    return (!isTestMode!) ? EdmundProvider : StubEdmundProvider
+}
+
 
 extension EdmundSimpleAPI : TargetType {
     public var task: Task {
@@ -117,13 +132,21 @@ extension EdmundSimpleAPI : TargetType {
     public var sampleData: Data {
         switch self {
             
-//        case .xApp:
-//            return stubbedResponse("XApp")
-//            
+        case .make:
+            return stubbedResponse("Make")
+//
 //        case .xAuth:
 //            return stubbedResponse("XAuth")
         default:
             return "Mrglglglggll!".data(using: String.Encoding.utf8)!
         }
+    }
+    
+    func stubbedResponse(_ filename: String) -> Data! {
+        @objc class TestClass: NSObject { }
+        
+        let bundle = Bundle(for: TestClass.self)
+        let path = bundle.path(forResource: filename, ofType: "json")
+        return (try? Data(contentsOf: URL(fileURLWithPath: path!)))
     }
 }

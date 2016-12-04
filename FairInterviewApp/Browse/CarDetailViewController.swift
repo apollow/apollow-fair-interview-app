@@ -43,7 +43,7 @@ class CarDetailViewController: UIViewController {
     
     
     func getArticleLinks() {
-        EdmundProvider.request(.articleOfVehicle(make: car.make, model: car.model))
+        getEdmundProvider().request(.articleOfVehicle(make: car.make, model: car.model))
             .retry(3)
             .subscribe { event in
                 switch event {
