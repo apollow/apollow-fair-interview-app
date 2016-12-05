@@ -9,8 +9,8 @@
 "Dealerships" = "Dealerships";
 "Nearby Dealerships" = "Nearby Dealerships";
 "Car" = "Car";
-"We couldn't find a dealership nearby with your car, you can set the zipcode below to hopefully find a dealership nearby" = "We couldn't find a dealership nearby with your car, you can set the zipcode below to hopefully find a dealership nearby";
-"Sorry, this app does not have permissions for accessing the location, you can set the zipcode in the textfield below." = "Sorry, this app does not have permissions for accessing the location, you can set the zipcode in the textfield below.";
+"We couldn't find a dealership nearby with your car, you can set the zipcode above to hopefully find a dealership nearby" = "We couldn't find a dealership nearby with your car, you can set the zipcode above to hopefully find a dealership nearby";
+"Sorry, this app does not have permissions for accessing your location, you can set the zipcode in the textfield above." = "Sorry, this app does not have permissions for accessing the location, you can set the zipcode in the textfield above.";
 
 "Find Dealerships with Zipcode" = "Find Dealerships with Zipcode";
 "Enter Zipcode" = "Enter Zipcode";
