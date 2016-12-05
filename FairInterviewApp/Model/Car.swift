@@ -48,7 +48,7 @@ struct Car {
         return list
     }
     
-    static func fromJSON(_ json:JSON) throws -> [Car] {
+    static func fromJSON(_ json:JSON) -> [Car] {
         
         let id = json["id"].stringValue
         let name = json["name"].stringValue
@@ -56,11 +56,11 @@ struct Car {
         
         var carList = [Car]()
         guard let models = json["models"].array else {
-            throw BasicError.make("Models not in json for cars")
+            return []
         }
         for m in models {
             let model = m["niceName"].stringValue
-//            let year = m["years"].arrayValue[0]["year"].intValue
+            //Trivializing differences in years
             let year = m["years"][0]["year"].intValue
             carList.append(Car(id, name, make, model, year, ""))
         }
@@ -68,21 +68,13 @@ struct Car {
         return carList
     }
     
-    static func fromJSONIntoList(_ data:Data) throws -> [Car] {
+    static func fromJSONIntoList(_ data:Data) -> [Car] {
         let json = JSON(data: data)
-        
-        guard let makes = json["makes"].array else {
-            throw BasicError.make("Makes not in json for cars")
-        }
+        guard let makes = json["makes"].array else { return [] }
         
         var car = [Car]()
-        
         for m in makes {
-            do {
-                try car += fromJSON(m)
-            } catch {
-                throw BasicError.make("Models not in json for cars")
-            }
+            car += fromJSON(m)
         }
         
         return car
@@ -96,12 +88,7 @@ struct CarViewModel {
     }
     
     init(response : Data) {
-        do {
-            try self.init(list : Car.fromJSONIntoList(response))
-        }
-        catch {
-            self.init(list: [])
-        }
+        self.init(list : Car.fromJSONIntoList(response))
     }
 
     static let empty = CarViewModel(list: [])

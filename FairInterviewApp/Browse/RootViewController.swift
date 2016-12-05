@@ -23,14 +23,15 @@ class RootViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        disposeBag = DisposeBag()
         activityIndicator = createAndEmbedActivityIndicator(view: emptyView)
         activityIndicator?.startAnimating()
         makeModelsRequest()
         self.title = .Browse
+        
     }
     
-    func configureTableDataSource() {
+    func configureTable() {
+        disposeBag = DisposeBag()
         tableView.register(UINib(nibName: "CarTableViewCell", bundle: nil), forCellReuseIdentifier: "CarCell")
         tableView.rowHeight = 194
         
@@ -49,10 +50,21 @@ class RootViewController: UIViewController {
                 cell.dataModel = viewModel
             }
             .addDisposableTo(disposeBag!)
+        
+        tableView.rx.modelSelected(Car.self)
+            .asDriver()
+            .drive(onNext: { car in
+                let viewController = UIStoryboard.main().viewController(withID: .CarDetail) as! CarDetailViewController
+                viewController.car = car
+                self.navigationController?.pushViewController(viewController, animated: false)
+            })
+            .addDisposableTo(disposeBag!)
+        
     }
     
     
     func makeModelsRequest() {
+        disposeBag = DisposeBag()
         getEdmundProvider().request(.make)
             .retry(3)
             .subscribe { event in
@@ -61,8 +73,7 @@ class RootViewController: UIViewController {
                     self.carViewModel = CarViewModel(response: response.data)
                     self.activityIndicator?.stopAnimating()
                     self.queryEmptyLabel?.isHidden = false
-//                    self.configureTableDataSource()
-                    self.configureNavigateOnRowClick()
+                    self.configureTable()
             case let .error(error):
                 print(error)
             default:
@@ -72,19 +83,8 @@ class RootViewController: UIViewController {
     }
     
     
-    func configureNavigateOnRowClick() {
-        tableView.rx.modelSelected(Car.self)
-            .asDriver()
-            .drive(onNext: { car in
-                let viewController = UIStoryboard.main().viewController(withID: .CarDetail) as! CarDetailViewController
-                viewController.car = car
-                self.navigationController?.pushViewController(viewController, animated: false)
-            })
-            .addDisposableTo(disposeBag!)
-    }
     
     func filterAndDetermineEmpty(_ query : String, _ list : [Car]) -> [Car] {
-        print(query)
         let filtered = list.filter { car in
             car.make.lowercased().contains(query.lowercased())
         }

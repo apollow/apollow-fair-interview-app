@@ -15,7 +15,6 @@ enum EdmundSimpleAPI {
     case make
     case articleOfVehicle(make: String, model : String)
     case dealershipsForVehicle(zip: String, make : String)
-    case getCar(make: String, model : String)
 }
 
 private let EDMUND_APIKEY  : String =  "syny99wj6n5rpf8zy7deyjtv"
@@ -38,6 +37,7 @@ private func JSONResponseDataFormatter(_ data: Data) -> Data {
 //let EdmundProvider = RxMoyaProvider<EdmundSimpleAPI>(plugins: [NetworkLoggerPlugin(verbose: true, responseDataFormatter: JSONResponseDataFormatter)])
 private let EdmundProvider = RxMoyaProvider<EdmundSimpleAPI>(plugins: [])
 private let StubEdmundProvider = RxMoyaProvider<EdmundSimpleAPI>(stubClosure: MoyaProvider.immediatelyStub)
+private var _edmundTestMode : Bool = false
 
 func isRunningUnitTests() -> Bool {
     let env = ProcessInfo.processInfo.environment
@@ -47,8 +47,12 @@ func isRunningUnitTests() -> Bool {
     return false
 }
 
+func setEdmundAPITestMode(_ t : Bool) {
+    _edmundTestMode = t
+}
 
-func getEdmundProvider(isTestMode : Bool? = false) -> RxMoyaProvider<EdmundSimpleAPI> {
+
+func getEdmundProvider(isTestMode : Bool? = _edmundTestMode) -> RxMoyaProvider<EdmundSimpleAPI> {
     return (!isTestMode!) ? EdmundProvider : StubEdmundProvider
 }
 
@@ -69,9 +73,6 @@ extension EdmundSimpleAPI : TargetType {
             return "v1/content/"
         case .dealershipsForVehicle(_,_):
             return "api/dealer/v2/dealers"
-            
-        case .getCar(let auctionID, let artworkID):
-            return "/api/v1/sale/\(auctionID)/sale_artwork/\(artworkID)"
         }
     }
     
@@ -135,8 +136,8 @@ extension EdmundSimpleAPI : TargetType {
         case .make:
             return stubbedResponse("Make")
 //
-//        case .xAuth:
-//            return stubbedResponse("XAuth")
+        case .articleOfVehicle(_,_):
+            return stubbedResponse("ArticleOfVehicle")
         default:
             return "Mrglglglggll!".data(using: String.Encoding.utf8)!
         }
