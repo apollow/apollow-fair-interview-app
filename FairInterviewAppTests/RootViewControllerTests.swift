@@ -80,23 +80,23 @@ class RootViewControllerSpec: QuickSpec {
                     expect(subject.emptyView.isHidden).toEventually(beFalse())
                 }
                 
-//                it ("responds to tap controls that navigate to car detail") {
-//                    let navsubject = UINavigationController(rootViewController: subject)
-//                    
-//                    expect(navsubject.topViewController).toEventually(beAnInstanceOf(RootViewController.self))
-//                    expect(subject.navigationController).to(be(navsubject))
-//                    
-//                    waitUntil { done in
-//                        subject.configureTable()
-//                        done()
-//                    }
-//                    expect(subject.tableView.delegate).toNotEventually(beNil())
-//                    
-//                    let ndxPath = IndexPath(item: 0, section: 0)
-//                    subject.tableView.delegate?.tableView!(subject.tableView, didSelectRowAt: ndxPath)
-//                    
-//                    expect(navsubject.visibleViewController).toEventually(beAnInstanceOf(CarDetailViewController.self))
-//                }
+                it ("responds to tap controls that navigate to car detail") {
+                    let navsubject = UINavigationController(rootViewController: subject)
+                    
+                    expect(navsubject.topViewController).toEventually(beAnInstanceOf(RootViewController.self))
+                    expect(subject.navigationController).to(be(navsubject))
+                    
+                    waitUntil { done in
+                        subject.configureTable()
+                        done()
+                    }
+                    expect(subject.tableView.delegate).toNotEventually(beNil())
+                    
+                    let ndxPath = IndexPath(item: 0, section: 0)
+                    subject.tableView.delegate?.tableView!(subject.tableView, didSelectRowAt: ndxPath)
+                    
+                    expect(navsubject.visibleViewController).toEventually(beAnInstanceOf(CarDetailViewController.self))
+                }
             }
         }
     }

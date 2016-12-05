@@ -22,6 +22,6 @@ extension String {
 extension String {
     static let NearbyDealerships = NSLocalizedString("Nearby Dealerships")
     static let Dealerships = NSLocalizedString("Dealerships")
-    static let NoDealerships = NSLocalizedString("We couldn't find a dealership nearby with your car")
-    static let YouDontHaveGeolocationPermissions = NSLocalizedString("Sorry, this app does not have permissions for accessing the location")
+    static let NoDealerships = NSLocalizedString("We couldn't find a dealership nearby with your car, you can set the zipcode below to hopefully find a dealership nearby")
+    static let YouDontHaveGeolocationPermissions = NSLocalizedString("Sorry, this app does not have permissions for accessing the location, you can set the zipcode in the textfield below.")
 }

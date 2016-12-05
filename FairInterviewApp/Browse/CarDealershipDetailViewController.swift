@@ -18,18 +18,20 @@ private extension Reactive where Base: UIView {
         return UIBindingObserver(UIElement: base) { view, authorized in
             if authorized {
                 view.isHidden = true
+                //Empty View text prompt
                 if let label = view.viewWithTag(1) as? UILabel {
-                    label.text = String.YouDontHaveGeolocationPermissions
+                    label.text = String.NoDealerships
                 }
-                
-                if let activityIndicator = view.viewWithTag(2) as? UIActivityIndicatorView {
-                    activityIndicator.stopAnimating()
-                }
+                //Open locations button
+                view.viewWithTag(3)?.isHidden = true
             }
             else {
                 view.isHidden = false
+                if let label = view.viewWithTag(1) as? UILabel {
+                    label.text = String.YouDontHaveGeolocationPermissions
+                }
                 if let activityIndicator = view.viewWithTag(2) as? UIActivityIndicatorView {
-                    activityIndicator.startAnimating()
+                    activityIndicator.stopAnimating()
                 }
             }
         }
@@ -76,7 +78,7 @@ class CarDealershipDetailViewController: UIViewController, UITextFieldDelegate {
                 (array, error) in
                     if (error != nil) {
                     } else {
-                        self.getDealerships(array: array)
+                        self.getDealershipsByGeolocation(array: array)
                     }
                 })
             }, onCompleted: {
@@ -86,7 +88,7 @@ class CarDealershipDetailViewController: UIViewController, UITextFieldDelegate {
         zipcodeField.delegate = self
     }
     
-    func getDealerships(array : [CLPlacemark]?) {
+    func getDealershipsByGeolocation(array : [CLPlacemark]?) {
         guard let arr = array else {
             return
         }
@@ -94,6 +96,7 @@ class CarDealershipDetailViewController: UIViewController, UITextFieldDelegate {
             return
         }
         let zipcode = arr.last!.postalCode!
+        zipcodeField.text = zipcode
         getDealerships(zipcode : zipcode)
     }
     
@@ -104,6 +107,7 @@ class CarDealershipDetailViewController: UIViewController, UITextFieldDelegate {
             .subscribe { event in
                 switch event {
                 case let .next(response):
+                    self.activityIndicator?.stopAnimating()
                     self.dealershipViewModel = DealerViewModel.init(response: response.data)
                     self.configureTableDataSource()
                     self.configureNavigateOnRowClick()

@@ -19,7 +19,6 @@ class RootViewController: UIViewController {
     var activityIndicator : UIActivityIndicatorView?
     var disposeBag : DisposeBag?
     var carViewModel : CarViewModel?
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +61,6 @@ class RootViewController: UIViewController {
         
     }
     
-    
     func makeModelsRequest() {
         disposeBag = DisposeBag()
         getEdmundProvider().request(.make)
@@ -81,8 +79,6 @@ class RootViewController: UIViewController {
             }
         }.addDisposableTo(disposeBag!)
     }
-    
-    
     
     func filterAndDetermineEmpty(_ query : String, _ list : [Car]) -> [Car] {
         let filtered = list.filter { car in

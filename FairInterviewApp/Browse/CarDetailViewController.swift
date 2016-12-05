@@ -83,12 +83,10 @@ class CarDetailViewController: UIViewController {
     }
     
     @IBAction func onDealershipTap(_ sender: Any) {
-        let deselectIndexPath = IndexPath(row: 0, section: 1)
-        tableView.delegate?.tableView!(tableView, didSelectRowAt: deselectIndexPath)
-//        self.tableView.selectRow(at: IndexPath(row: 0, section: 1), animated: false, scrollPosition: UITableViewScrollPosition.none)
-//        let viewController = UIStoryboard.main().viewController(withID: .CarDealership) as! CarDealershipDetailViewController
-//        viewController.car = car
-//        self.navigationController?.pushViewController(viewController, animated: false)
+        self.tableView.selectRow(at: IndexPath(row: 0, section: 1), animated: false, scrollPosition: UITableViewScrollPosition.none)
+        let viewController = UIStoryboard.main().viewController(withID: .CarDealership) as! CarDealershipDetailViewController
+        viewController.car = car
+        self.navigationController?.pushViewController(viewController, animated: false)
     }
     
     func configureNavigateOnRowClick() {

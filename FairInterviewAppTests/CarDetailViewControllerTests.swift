@@ -82,8 +82,8 @@ class CarDetailViewControllerSpec: QuickSpec {
                     let pageVCs = subject.pageController?.orderedViewControllers
                     expect(pageVCs).toEventuallyNot(beEmpty())
                     let imagecontentvc = pageVCs![0] as! ImageContentPageViewController
+                    
                     expect(imagecontentvc.imageView).toEventuallyNot(beNil())
-                    print(imagecontentvc.urlString)
                     expect(imagecontentvc.urlString.range(of: "https://a.tcimg.net/v/")).toNot(beNil())
                     expect(imagecontentvc.imageView?.image).toEventuallyNot(beNil())
                 }

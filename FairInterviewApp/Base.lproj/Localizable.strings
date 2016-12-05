@@ -9,5 +9,5 @@
 "Dealerships" = "Dealerships";
 "Nearby Dealerships" = "Nearby Dealerships";
 "Car" = "Car";
-"We couldn't find a dealership nearby with your car" = "We couldn't find a dealership nearby with your car";
-"Sorry, this app does not have permissions for accessing the location" = "Sorry, this app does not have permissions for accessing the location";
+"We couldn't find a dealership nearby with your car, you can set the zipcode below to hopefully find a dealership nearby" = "We couldn't find a dealership nearby with your car, you can set the zipcode below to hopefully find a dealership nearby";
+"Sorry, this app does not have permissions for accessing the location, you can set the zipcode in the textfield below." = "Sorry, this app does not have permissions for accessing the location, you can set the zipcode in the textfield below.";
