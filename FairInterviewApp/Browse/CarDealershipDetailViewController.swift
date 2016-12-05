@@ -44,6 +44,7 @@ class CarDealershipDetailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var openPermissionsButton: UIButton!
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var zipcodeField: UITextField!
+    @IBOutlet weak var findDealershipsButton: UIButton!
     
     var car : Car = Car()
     var dealershipViewModel : DealerViewModel?
@@ -58,6 +59,8 @@ class CarDealershipDetailViewController: UIViewController, UITextFieldDelegate {
         activityIndicator?.startAnimating()
         activityIndicator?.tag = 2
         
+        findDealershipsButton.titleLabel?.text = String.FindDealerships
+        zipcodeField.placeholder = String.EnterZipCode
         
         //DisposeBag for getting nearby zip code
         disposeBag = DisposeBag()
@@ -151,11 +154,10 @@ class CarDealershipDetailViewController: UIViewController, UITextFieldDelegate {
         UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == zipcodeField && !textField.text!.isEmpty {
-            getDealerships(zipcode: textField.text!)
-        }
-        return true
+    
+    @IBAction func onTapFindDealerships(_ sender: Any) {
+        getDealerships(zipcode: zipcodeField.text!)
+        zipcodeField.endEditing(true)
     }
     
     func filterAndDetermineEmpty(_ list : [Dealer]) -> [Dealer] {

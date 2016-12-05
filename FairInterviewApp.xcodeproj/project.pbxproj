@@ -44,6 +44,8 @@
 		758B6D431DEA36A40026B002 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 758B6D411DEA36A40026B002 /* Main.storyboard */; };
 		758B6D481DEA371F0026B002 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B6D461DEA371F0026B002 /* RootViewController.swift */; };
 		759E9DF91DF5323F00197361 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759E9DF81DF5323F00197361 /* ActivityIndicator.swift */; };
+		759E9DFB1DF538CE00197361 /* CarDealershipViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759E9DFA1DF538CE00197361 /* CarDealershipViewControllerTests.swift */; };
+		759E9DFD1DF53D9400197361 /* NearbyDealerships.json in Resources */ = {isa = PBXBuildFile; fileRef = 759E9DFC1DF53D9400197361 /* NearbyDealerships.json */; };
 		759FEF741DEBC43600CB76C8 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759FEF731DEBC43600CB76C8 /* Article.swift */; };
 		75BB039F1DF4EB9D00D64F43 /* ArticleOfVehicle.json in Resources */ = {isa = PBXBuildFile; fileRef = 75BB039E1DF4EB9D00D64F43 /* ArticleOfVehicle.json */; };
 		C3EEB92E09BD0353144D0300 /* Pods_FairInterviewApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BEC6C96AC68CF8131A9AE1 /* Pods_FairInterviewApp.framework */; };
@@ -103,6 +105,8 @@
 		758B6D411DEA36A40026B002 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Storyboards/Main.storyboard; sourceTree = "<group>"; };
 		758B6D461DEA371F0026B002 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootViewController.swift; path = Browse/RootViewController.swift; sourceTree = "<group>"; };
 		759E9DF81DF5323F00197361 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = Helpers/ActivityIndicator.swift; sourceTree = "<group>"; };
+		759E9DFA1DF538CE00197361 /* CarDealershipViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarDealershipViewControllerTests.swift; sourceTree = "<group>"; };
+		759E9DFC1DF53D9400197361 /* NearbyDealerships.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = NearbyDealerships.json; path = Managers/StubbedResponses/NearbyDealerships.json; sourceTree = "<group>"; };
 		759FEF731DEBC43600CB76C8 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Article.swift; path = Model/Article.swift; sourceTree = "<group>"; };
 		75BB039E1DF4EB9D00D64F43 /* ArticleOfVehicle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ArticleOfVehicle.json; path = Managers/StubbedResponses/ArticleOfVehicle.json; sourceTree = "<group>"; };
 		8785357C1A7BEBD59FDEA027 /* Pods-FairInterviewAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FairInterviewAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FairInterviewAppTests/Pods-FairInterviewAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -204,6 +208,7 @@
 			children = (
 				756BA43F1DF3C392004EABA5 /* Make.json */,
 				75BB039E1DF4EB9D00D64F43 /* ArticleOfVehicle.json */,
+				759E9DFC1DF53D9400197361 /* NearbyDealerships.json */,
 			);
 			name = StubbedResponses;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 				758B6D311DEA351B0026B002 /* CarDetailViewControllerTests.swift */,
 				758B6D331DEA351B0026B002 /* Info.plist */,
 				7573D1E71DEE0EA5002AEF2F /* RootViewControllerTests.swift */,
+				759E9DFA1DF538CE00197361 /* CarDealershipViewControllerTests.swift */,
 			);
 			path = FairInterviewAppTests;
 			sourceTree = "<group>";
@@ -398,6 +404,7 @@
 				7573D1E41DED5696002AEF2F /* Localizable.strings in Resources */,
 				756BA4401DF3C392004EABA5 /* Make.json in Resources */,
 				758B6D431DEA36A40026B002 /* Main.storyboard in Resources */,
+				759E9DFD1DF53D9400197361 /* NearbyDealerships.json in Resources */,
 				758B6D421DEA36A40026B002 /* LaunchScreen.storyboard in Resources */,
 				75462B3C1DEB907900C2D04A /* CarTableViewCell.xib in Resources */,
 				75BB039F1DF4EB9D00D64F43 /* ArticleOfVehicle.json in Resources */,
@@ -548,6 +555,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7573D1E81DEE0EA5002AEF2F /* RootViewControllerTests.swift in Sources */,
+				759E9DFB1DF538CE00197361 /* CarDealershipViewControllerTests.swift in Sources */,
 				758B6D321DEA351B0026B002 /* CarDetailViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

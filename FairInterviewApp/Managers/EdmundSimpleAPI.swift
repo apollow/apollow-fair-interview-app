@@ -113,11 +113,13 @@ extension EdmundSimpleAPI : TargetType {
             
         case .make:
             return stubbedResponse("Make")
-//
+            
         case .articleOfVehicle(_,_):
             return stubbedResponse("ArticleOfVehicle")
-        default:
-            return "Mrglglglggll!".data(using: String.Encoding.utf8)!
+            
+        case .dealershipsForVehicle(_,_):
+            return stubbedResponse("NearbyDealerships")
+            
         }
     }
     

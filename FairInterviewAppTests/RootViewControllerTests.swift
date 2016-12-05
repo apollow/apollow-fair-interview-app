@@ -64,6 +64,8 @@ class RootViewControllerSpec: QuickSpec {
                     subject.configureTable()
                     expect(subject.searchBar.text) == ""
                     expect(subject.emptyView.isHidden).toEventually(beTrue())
+                    let ndxPath = IndexPath(row: 0, section: 0)
+                    subject.tableView.delegate?.tableView!(subject.tableView, didSelectRowAt: ndxPath)
                 }
                 
                 it ("searches for cars") {
@@ -86,16 +88,15 @@ class RootViewControllerSpec: QuickSpec {
                     expect(navsubject.topViewController).toEventually(beAnInstanceOf(RootViewController.self))
                     expect(subject.navigationController).to(be(navsubject))
                     
-                    waitUntil { done in
-                        subject.configureTable()
-                        done()
-                    }
-                    expect(subject.tableView.delegate).toNotEventually(beNil())
+                    subject.searchBar.text = ""
+                    subject.configureTable()
+                    expect(subject.searchBar.text) == ""
+                    expect(subject.emptyView.isHidden).toEventually(beTrue())
                     
-                    let ndxPath = IndexPath(item: 0, section: 0)
+                    let ndxPath = IndexPath(row: 0, section: 0)
                     subject.tableView.delegate?.tableView!(subject.tableView, didSelectRowAt: ndxPath)
                     
-                    expect(navsubject.visibleViewController).toEventually(beAnInstanceOf(CarDetailViewController.self))
+                    expect(navsubject.topViewController).toEventually(beAnInstanceOf(CarDetailViewController.self))
                 }
             }
         }
