@@ -12,7 +12,6 @@ import RxSwift
 
 class ImagePageViewController: UIPageViewController {
     
-    weak var pageDelegate: ImagePageViewControllerDelegate?
     var orderedViewControllers: [UIViewController]? {
         didSet {
             setup()
@@ -45,16 +44,8 @@ class ImagePageViewController: UIPageViewController {
                            direction: direction,
                            animated: true,
                            completion: { (finished) -> Void in
-                            self.notifyDelegateOfNewIndex()
         })
     }
-    
-    fileprivate func notifyDelegateOfNewIndex() {
-        if let firstViewController = viewControllers?.first,
-            let index = orderedViewControllers?.index(of: firstViewController) {
-        }
-    }
-    
 }
 
 // MARK: UIPageViewControllerDataSource
@@ -103,9 +94,5 @@ extension ImagePageViewController: UIPageViewControllerDataSource {
         
         return orderedViewControllers![nextIndex]
     }
-    
-}
-
-protocol ImagePageViewControllerDelegate: class {
     
 }

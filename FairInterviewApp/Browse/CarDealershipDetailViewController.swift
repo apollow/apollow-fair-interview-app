@@ -145,7 +145,6 @@ class CarDealershipDetailViewController: UIViewController, UITextFieldDelegate {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             })
             .addDisposableTo(disposeBag!)
-
     }
     
     private func openAppPreferences() {

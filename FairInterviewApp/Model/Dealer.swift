@@ -31,18 +31,19 @@ class Dealer {
         return Dealer(name, active, latLongRepr)
     }
     
-    static func fromJSONIntoList(_ data:Data) throws -> [Dealer] {
+    static func fromJSONIntoList(_ data:Data) -> [Dealer] {
         let json = JSON(data: data)
         
         guard let deals = json["dealers"].array else {
-            throw BasicError.make("Dealers not in json for cars")
+            return []
         }
         
-        let dealer : [Dealer] = try deals.map { (m : JSON) in
+        var dealer : [Dealer] = []
+        for d in deals {
             do {
-                return try fromJSON(m)
+                dealer.append(try fromJSON(d))
             } catch {
-                throw BasicError.make("Models not in json for cars")
+                return []
             }
         }
         
@@ -57,12 +58,7 @@ struct DealerViewModel {
     }
     
     init(response : Data) {
-        do {
-            try self.init(list : Dealer.fromJSONIntoList(response))
-        }
-        catch {
-            self.init(list: [])
-        }
+        self.init(list : Dealer.fromJSONIntoList(response))
     }
     
     static let empty = CarViewModel(list: [])

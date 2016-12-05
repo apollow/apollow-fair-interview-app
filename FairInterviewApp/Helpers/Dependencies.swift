@@ -22,11 +22,9 @@ class Dependencies {
     let URLSession = Foundation.URLSession.shared
     let backgroundWorkScheduler: ImmediateSchedulerType
     let mainScheduler: SerialDispatchQueueScheduler
-//    let wireframe: Wireframe
     let reachabilityService: ReachabilityService
     
     private init() {
-//        wireframe = DefaultWireframe()
         
         let operationQueue = OperationQueue()
         operationQueue.maxConcurrentOperationCount = 2

@@ -16,7 +16,6 @@ import CoreLocation
 class GeolocationService {
     static let instance = GeolocationService()
     private (set) var authorized: Driver<Bool>
-    private (set) var location: Driver<CLLocationCoordinate2D>
     private (set) var clocation: Driver<CLLocation>
     
     private let locationManager = CLLocationManager()
@@ -44,13 +43,6 @@ class GeolocationService {
                     return false
                 }
             }
-        
-        location = locationManager.rx.didUpdateLocations
-            .asDriver(onErrorJustReturn: [])
-            .flatMap {
-                return $0.last.map(Driver.just) ?? Driver.empty()
-            }
-            .map { $0.coordinate }
         
         clocation = locationManager.rx.didUpdateLocations
             .asDriver(onErrorJustReturn: [])

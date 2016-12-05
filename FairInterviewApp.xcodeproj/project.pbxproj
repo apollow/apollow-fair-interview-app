@@ -13,7 +13,6 @@
 		75462B351DEABDC200C2D04A /* CarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75462B341DEABDC200C2D04A /* CarTableViewCell.swift */; };
 		75462B3A1DEAC84B00C2D04A /* UIImageView+DownloadableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75462B391DEAC84B00C2D04A /* UIImageView+DownloadableImage.swift */; };
 		75462B3C1DEB907900C2D04A /* CarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75462B3B1DEB907900C2D04A /* CarTableViewCell.xib */; };
-		75462B441DEB955200C2D04A /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75462B3D1DEB955200C2D04A /* ActivityIndicator.swift */; };
 		75462B451DEB955200C2D04A /* BasicError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75462B3E1DEB955200C2D04A /* BasicError.swift */; };
 		75462B461DEB955200C2D04A /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75462B3F1DEB955200C2D04A /* Dependencies.swift */; };
 		75462B471DEB955200C2D04A /* DownloadableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75462B401DEB955200C2D04A /* DownloadableImage.swift */; };
@@ -44,6 +43,7 @@
 		758B6D421DEA36A40026B002 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 758B6D401DEA36A40026B002 /* LaunchScreen.storyboard */; };
 		758B6D431DEA36A40026B002 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 758B6D411DEA36A40026B002 /* Main.storyboard */; };
 		758B6D481DEA371F0026B002 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B6D461DEA371F0026B002 /* RootViewController.swift */; };
+		759E9DF91DF5323F00197361 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759E9DF81DF5323F00197361 /* ActivityIndicator.swift */; };
 		759FEF741DEBC43600CB76C8 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759FEF731DEBC43600CB76C8 /* Article.swift */; };
 		75BB039F1DF4EB9D00D64F43 /* ArticleOfVehicle.json in Resources */ = {isa = PBXBuildFile; fileRef = 75BB039E1DF4EB9D00D64F43 /* ArticleOfVehicle.json */; };
 		C3EEB92E09BD0353144D0300 /* Pods_FairInterviewApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BEC6C96AC68CF8131A9AE1 /* Pods_FairInterviewApp.framework */; };
@@ -67,7 +67,6 @@
 		75462B341DEABDC200C2D04A /* CarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarTableViewCell.swift; path = View/CarTableViewCell.swift; sourceTree = "<group>"; };
 		75462B391DEAC84B00C2D04A /* UIImageView+DownloadableImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+DownloadableImage.swift"; path = "Extensions/UIImageView+DownloadableImage.swift"; sourceTree = "<group>"; };
 		75462B3B1DEB907900C2D04A /* CarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CarTableViewCell.xib; path = View/CarTableViewCell.xib; sourceTree = "<group>"; };
-		75462B3D1DEB955200C2D04A /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = Helpers/ActivityIndicator.swift; sourceTree = "<group>"; };
 		75462B3E1DEB955200C2D04A /* BasicError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicError.swift; path = Helpers/BasicError.swift; sourceTree = "<group>"; };
 		75462B3F1DEB955200C2D04A /* Dependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dependencies.swift; path = Helpers/Dependencies.swift; sourceTree = "<group>"; };
 		75462B401DEB955200C2D04A /* DownloadableImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DownloadableImage.swift; path = Helpers/DownloadableImage.swift; sourceTree = "<group>"; };
@@ -103,6 +102,7 @@
 		758B6D401DEA36A40026B002 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Storyboards/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		758B6D411DEA36A40026B002 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Storyboards/Main.storyboard; sourceTree = "<group>"; };
 		758B6D461DEA371F0026B002 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootViewController.swift; path = Browse/RootViewController.swift; sourceTree = "<group>"; };
+		759E9DF81DF5323F00197361 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = Helpers/ActivityIndicator.swift; sourceTree = "<group>"; };
 		759FEF731DEBC43600CB76C8 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Article.swift; path = Model/Article.swift; sourceTree = "<group>"; };
 		75BB039E1DF4EB9D00D64F43 /* ArticleOfVehicle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ArticleOfVehicle.json; path = Managers/StubbedResponses/ArticleOfVehicle.json; sourceTree = "<group>"; };
 		8785357C1A7BEBD59FDEA027 /* Pods-FairInterviewAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FairInterviewAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FairInterviewAppTests/Pods-FairInterviewAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				75525A651DEBD800002578B7 /* GeolocationService.swift */,
-				75462B3D1DEB955200C2D04A /* ActivityIndicator.swift */,
+				759E9DF81DF5323F00197361 /* ActivityIndicator.swift */,
 				75462B3E1DEB955200C2D04A /* BasicError.swift */,
 				75462B3F1DEB955200C2D04A /* Dependencies.swift */,
 				75462B401DEB955200C2D04A /* DownloadableImage.swift */,
@@ -516,6 +516,7 @@
 				75462B491DEB955200C2D04A /* Reachability.swift in Sources */,
 				7573D1DE1DED45C9002AEF2F /* UIViewControllerExtension.swift in Sources */,
 				7573D1EA1DEE1203002AEF2F /* UIStoryboardExtensions.swift in Sources */,
+				759E9DF91DF5323F00197361 /* ActivityIndicator.swift in Sources */,
 				75462B3A1DEAC84B00C2D04A /* UIImageView+DownloadableImage.swift in Sources */,
 				75525A611DEBD5A0002578B7 /* Dealer.swift in Sources */,
 				759FEF741DEBC43600CB76C8 /* Article.swift in Sources */,
@@ -537,7 +538,6 @@
 				7573D1E01DED54D0002AEF2F /* String+Localized.swift in Sources */,
 				75525A6A1DEBD856002578B7 /* RxCLLocationManagerDelegateProxy.swift in Sources */,
 				75525A631DEBD736002578B7 /* CarDealershipDetailViewController.swift in Sources */,
-				75462B441DEB955200C2D04A /* ActivityIndicator.swift in Sources */,
 				7510A0021DEA853B00F5159B /* EdmundSimpleAPI.swift in Sources */,
 				75462B4C1DEB95F800C2D04A /* UIImageExtension.swift in Sources */,
 			);
@@ -579,6 +579,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -593,6 +594,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -628,6 +630,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -642,6 +645,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -670,6 +674,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AD29E5476B236C60ED3061F3 /* Pods-FairInterviewApp.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5JCRU35BES;
 				INFOPLIST_FILE = FairInterviewApp/Info.plist;
@@ -684,6 +689,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AFEE90ED72A25D13A3E184C2 /* Pods-FairInterviewApp.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5JCRU35BES;
 				INFOPLIST_FILE = FairInterviewApp/Info.plist;

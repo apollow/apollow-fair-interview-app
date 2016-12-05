@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ch2-xL-S5s">
-    <device id="retina5_5" orientation="landscape">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -19,18 +19,18 @@
                         <viewControllerLayoutGuide type="bottom" id="EPS-s9-h4K"/>
                     </layoutGuides>
                     <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="ZwX-cT-FIQ">
-                        <rect key="frame" x="0.0" y="64" width="736" height="350"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zn3-vH-8RB">
-                                <rect key="frame" x="20" y="44" width="696" height="306"/>
+                                <rect key="frame" x="20" y="44" width="374" height="628"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NcV-iH-bgQ">
-                                <rect key="frame" x="20" y="44" width="696" height="306"/>
+                                <rect key="frame" x="20" y="44" width="374" height="628"/>
                                 <subviews>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We couldn't find any cars with that make query" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJc-Js-eso">
-                                        <rect key="frame" x="227.66666666666669" y="132.66666666666666" width="241.00000000000006" height="40.666666666666686"/>
+                                        <rect key="frame" x="66.666666666666686" y="293.66666666666669" width="241" height="40.666666666666629"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="241" id="Hss-3D-cWb"/>
                                         </constraints>
@@ -46,7 +46,7 @@
                                 </constraints>
                             </view>
                             <searchBar contentMode="redraw" text="" placeholder="Search Makes" translatesAutoresizingMaskIntoConstraints="NO" id="77q-hv-r85">
-                                <rect key="frame" x="20" y="0.0" width="696" height="44"/>
+                                <rect key="frame" x="20" y="0.0" width="374" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
@@ -87,22 +87,22 @@
                         <viewControllerLayoutGuide type="bottom" id="uNc-3F-0Hf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OPH-y9-yyo">
-                        <rect key="frame" x="0.0" y="64" width="736" height="350"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AxB-dH-N9i">
-                                <rect key="frame" x="321" y="0.0" width="415" height="350"/>
+                                <rect key="frame" x="20" y="201" width="374" height="471"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vvD-8W-yrg">
-                                <rect key="frame" x="321" y="0.0" width="415" height="350"/>
+                                <rect key="frame" x="40" y="201" width="374" height="471"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFM-xk-e1w">
-                                <rect key="frame" x="0.0" y="75" width="321" height="200"/>
+                                <rect key="frame" x="20" y="0.0" width="374" height="201"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MXi-rO-0jb">
-                                        <rect key="frame" x="0.0" y="0.0" width="321" height="200"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="201"/>
                                         <connections>
                                             <segue destination="Hii-SA-arV" kind="embed" identifier="imagePageSegue" id="dpT-p1-T9r"/>
                                         </connections>
@@ -245,24 +245,24 @@
                         <viewControllerLayoutGuide type="bottom" id="IsJ-ls-iVs"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="aLV-Bt-d0l">
-                        <rect key="frame" x="0.0" y="64" width="736" height="350"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WH8-a6-1Rb">
-                                <rect key="frame" x="20" y="0.0" width="696" height="350"/>
+                                <rect key="frame" x="20" y="0.0" width="374" height="672"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JaN-cA-Mo2">
-                                <rect key="frame" x="0.0" y="0.0" width="736" height="350"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                                 <subviews>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HGp-t0-weW">
-                                        <rect key="frame" x="274.66666666666669" y="221" width="187" height="30"/>
+                                        <rect key="frame" x="113.66666666666669" y="382" width="187" height="30"/>
                                         <state key="normal" title="Open Location Permissions">
                                             <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We couldn't find a dealership nearby with your car, you can set the zipcode below to hopefully find a dealership nearby" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyN-Oc-Ad6">
-                                        <rect key="frame" x="208.66666666666663" y="130" width="320" height="61"/>
+                                        <rect key="frame" x="47.666666666666657" y="291" width="320" height="61"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="320" id="qm1-Qx-rNV"/>
                                         </constraints>
@@ -280,10 +280,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7T0-o5-6kR">
-                                <rect key="frame" x="0.0" y="285" width="736" height="65"/>
+                                <rect key="frame" x="0.0" y="607" width="414" height="65"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Zipcode" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k0U-uS-6X9">
-                                        <rect key="frame" x="312" y="17" width="112" height="30"/>
+                                        <rect key="frame" x="151" y="17" width="112" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -323,7 +323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OYh-Us-sIG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3292.753623188406" y="-243.75000000000003"/>
+            <point key="canvasLocation" x="3293" y="-242"/>
         </scene>
         <!--Image Content Page View Controller-->
         <scene sceneID="SlK-p0-iL1">
@@ -334,11 +334,11 @@
                         <viewControllerLayoutGuide type="bottom" id="cwW-7n-BjM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fYM-8C-2Iw" customClass="CarContentPageViewController">
-                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7vX-02-uRP">
-                                <rect key="frame" x="20" y="0.0" width="696" height="414"/>
+                                <rect key="frame" x="20" y="0.0" width="374" height="736"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -359,7 +359,7 @@
             <objects>
                 <pageViewController storyboardIdentifier="ImagePageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="Hii-SA-arV" customClass="ImagePageViewController" customModule="FairInterviewApp" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
-                        <segue destination="z1b-3v-Z8q" kind="presentation" id="wg5-dr-vMs"/>
+                        <segue destination="z1b-3v-Z8q" kind="presentation" identifier="contentToImageSegue" id="wg5-dr-vMs"/>
                     </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gni-i9-uoF" userLabel="First Responder" sceneMemberID="firstResponder"/>

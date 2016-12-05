@@ -51,18 +51,15 @@ func setEdmundAPITestMode(_ t : Bool) {
     _edmundTestMode = t
 }
 
-
 func getEdmundProvider(isTestMode : Bool? = _edmundTestMode) -> RxMoyaProvider<EdmundSimpleAPI> {
     return (!isTestMode!) ? EdmundProvider : StubEdmundProvider
 }
-
 
 extension EdmundSimpleAPI : TargetType {
     public var task: Task {
         return .request
     }
     
-//    https://api.edmunds.com/api/dealer/v2/dealers?zipcode=90019&make=honda&radius=10&fmt=json&api_key={your API key}
     public var path: String {
         switch self {
             
@@ -101,30 +98,11 @@ extension EdmundSimpleAPI : TargetType {
                     "radius": "10" as AnyObject,
                     "api_key": EDMUND_APIKEY as AnyObject
             ]
-            
-//        case .xAuth(let email, let password):
-//            return [
-//                "client_id": APIKeys.sharedKeys.key as AnyObject? ?? "" as AnyObject,
-//                "client_secret": APIKeys.sharedKeys.secret as AnyObject? ?? "" as AnyObject,
-//                "email": email as AnyObject,
-//                "password":  password as AnyObject,
-//                "grant_type": "credentials" as AnyObject
-//            ]
-
-        default:
-            return nil
         }
     }
     
     public var method: Moya.Method {
         switch self {
-//        case .lostPasswordNotification,
-//             .createUser:
-//            return .post
-//        case .findExistingEmailRegistration:
-//            return .head
-//        case .bidderDetailsNotification:
-//            return .put
         default:
             return .get
         }
