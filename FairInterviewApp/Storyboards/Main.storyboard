@@ -95,7 +95,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vvD-8W-yrg">
-                                <rect key="frame" x="40" y="201" width="374" height="471"/>
+                                <rect key="frame" x="20" y="201" width="374" height="471"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFM-xk-e1w">
@@ -142,7 +142,7 @@
                             <constraint firstAttribute="trailing" secondItem="AxB-dH-N9i" secondAttribute="trailing" id="8bc-Ea-Nga"/>
                             <constraint firstItem="wFM-xk-e1w" firstAttribute="top" secondItem="Ngo-CG-TeN" secondAttribute="bottom" id="Fah-tW-IFv"/>
                             <constraint firstAttribute="trailing" secondItem="AxB-dH-N9i" secondAttribute="trailing" constant="20" id="LEB-gy-hq8"/>
-                            <constraint firstAttribute="trailing" secondItem="vvD-8W-yrg" secondAttribute="trailing" id="RrA-Wa-HMk"/>
+                            <constraint firstItem="vvD-8W-yrg" firstAttribute="leading" secondItem="AxB-dH-N9i" secondAttribute="leading" id="M4o-tM-fQh"/>
                             <constraint firstAttribute="trailing" secondItem="wFM-xk-e1w" secondAttribute="trailing" constant="20" id="SVd-XP-ZQp"/>
                             <constraint firstItem="uNc-3F-0Hf" firstAttribute="top" secondItem="AxB-dH-N9i" secondAttribute="bottom" id="TnB-2g-Din"/>
                             <constraint firstItem="uNc-3F-0Hf" firstAttribute="top" secondItem="wFM-xk-e1w" secondAttribute="bottom" constant="75" id="Ver-aw-pBO"/>

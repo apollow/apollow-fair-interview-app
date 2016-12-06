@@ -130,7 +130,8 @@ class CarDealershipDetailViewController: UIViewController, UITextFieldDelegate {
             .map { (deals : [Dealer]) in
                 return self.filterAndDetermineEmpty(deals)
             }
-            .bindTo(tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) {
+            .asDriver(onErrorJustReturn: [])
+            .drive(tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) {
                 (_, viewModel, cell) in
                 cell.textLabel?.text = viewModel.name
         }.addDisposableTo(disposeBag!)

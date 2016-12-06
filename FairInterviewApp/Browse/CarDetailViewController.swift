@@ -74,7 +74,7 @@ class CarDetailViewController: UIViewController {
         
         let items = Observable.just([
             SectionModel(model: "Details", items: car.getDetailedDescription),
-            SectionModel(model: "Articles", items: articleList!)])
+            SectionModel(model: "Articles", items: articleList ?? [])])
         
         items
             .bindTo(tableView.rx.items(dataSource: dataSource))

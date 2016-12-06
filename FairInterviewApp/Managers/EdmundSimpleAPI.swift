@@ -17,6 +17,7 @@ enum EdmundSimpleAPI {
     case dealershipsForVehicle(zip: String, make : String)
 }
 
+//TODO: Place it somewhere not in code!
 private let EDMUND_APIKEY  : String =  "syny99wj6n5rpf8zy7deyjtv"
 private let EDMUND_SECRET  : String =  "EZmhB2XHhsGNYd6ZNTSBVnB5"
 
@@ -38,14 +39,6 @@ private func JSONResponseDataFormatter(_ data: Data) -> Data {
 private let EdmundProvider = RxMoyaProvider<EdmundSimpleAPI>(plugins: [])
 private let StubEdmundProvider = RxMoyaProvider<EdmundSimpleAPI>(stubClosure: MoyaProvider.immediatelyStub)
 private var _edmundTestMode : Bool = false
-
-func isRunningUnitTests() -> Bool {
-    let env = ProcessInfo.processInfo.environment
-    if let injectBundle = env["XCInjectBundle"] {
-        return NSString(string: injectBundle).pathExtension == "xctest"
-    }
-    return false
-}
 
 func setEdmundAPITestMode(_ t : Bool) {
     _edmundTestMode = t
